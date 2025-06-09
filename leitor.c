@@ -99,3 +99,15 @@ void imprimir_lista_leitores(Lista_leitores* lista){
     }
 }
 
+void libera_lista(Lista_leitores* lista){
+
+    Celula* aux = lista->primeiro;
+
+    while (aux != NULL){
+        Celula* temp = aux;
+        aux = aux->proximo;
+        free(temp);
+    }
+
+}
+

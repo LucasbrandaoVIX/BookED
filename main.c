@@ -58,5 +58,6 @@ int main() {
     registrar_leitores_from_txt(lista);
 
     imprimir_lista_leitores(lista);
+    libera_lista_leitores(lista);
     return 0;
 }

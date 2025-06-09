@@ -17,4 +17,5 @@ void inserir_leitor(Lista_leitores* lista, Leitor* leitor);
 void imprimir_lista_leitores(Lista_leitores* lista);
 Leitor* inicializa_leitor(int indentificador, char nome[TAMANHO_MAXIMO], int n_afinidades, char afinidades[][TAMANHO_MAXIMO]);
 void imprime_leitor(Leitor* leitor);
+void libera_lista_leitores(Lista_leitores*);
 #endif
