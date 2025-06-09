@@ -10,5 +10,7 @@ typedef struct Lista_livro Lista_livro;
 Lista_livro* criar_lista_livro();
 Livro* inicializar_livro(int identificador, char titulo[], char autor[], char genero[], int ano);
 void inserir_livro(Lista_livro* lista, Livro* livro);
+void imprimir_lista_livro(Lista_livro* lista_livro);
+void imprime_livro(Livro* livro);
 
 #endif
