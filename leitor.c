@@ -99,7 +99,7 @@ void imprimir_lista_leitores(Lista_leitores* lista){
     }
 }
 
-void libera_lista(Lista_leitores* lista){
+void libera_lista_leitores(Lista_leitores* lista){
 
     Celula* aux = lista->primeiro;
 
