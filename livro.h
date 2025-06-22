@@ -13,6 +13,8 @@ void inserir_livro(Lista_livro* lista, Livro* livro);
 void imprimir_lista_livro(Lista_livro* lista_livro);
 void imprime_livro(Livro* livro);
 Livro* buscar_livro_por_id(Lista_livro* lista, int id);
-char* get_titulo_livro(Livro* livro);
+char* obter_titulo_livro(Livro* livro);
+int livro_ja_existe_na_lista(Lista_livro* lista, Livro* livro);
+void remover_livro_da_lista(Lista_livro* lista, Livro* livro);
 
 #endif

@@ -13,6 +13,7 @@ struct Leitor {
     char afinidades[MAX_AFINIDADES][TAMANHO_MAXIMO];
     Lista_livro* livros_lidos; // Lista de livros lidos pelo leitor
     Lista_livro* livros_desejados; // Lista de livros desejados pelo leitor
+    Lista_livro* livros_recomendados; // Lista de livros recomendados para o leitor
 };
 
 struct Celula {
@@ -78,6 +79,7 @@ Leitor* inicializa_leitor(int indentificador, char nome[TAMANHO_MAXIMO], int n_a
 
     novo_leitor->livros_lidos = criar_lista_livro(); // Inicializar lista de livros lidos
     novo_leitor->livros_desejados = criar_lista_livro(); // Inicializar lista de livros desejados
+    novo_leitor->livros_recomendados = criar_lista_livro(); // Inicializar lista de livros recomendados
 
     return novo_leitor; // Retornar o ponteiro para o novo leitor
 
@@ -97,6 +99,8 @@ void imprime_leitor(Leitor* leitor) {
     imprimir_livros_lidos(leitor);
     printf("Livros desejados:\n");
     imprimir_livros_desejados(leitor);
+    printf("Livros recomendados:\n");
+    imprimir_livros_recomendados(leitor);
     printf("---\n");
 }
 
@@ -170,4 +174,56 @@ void imprimir_lista_leitores(Lista_leitores* lista){
         imprime_leitor(aux->leitor);
         aux = aux->proximo;
     }
+}
+
+char* obter_nome_leitor(Leitor* leitor) {
+    if (leitor == NULL) return NULL;
+    return leitor->nome;
+}
+
+void recomendar_livro(Leitor* leitor_origem, Livro* livro, Leitor* leitor_destino) {
+    if (leitor_origem == NULL || livro == NULL || leitor_destino == NULL) {
+        printf("Erro: Parâmetros inválidos para recomendação.\n");
+        return;
+    }
+    
+    // Verificar se o livro já está na lista de recomendados usando função do livro.c
+    if (!livro_ja_existe_na_lista(leitor_destino->livros_recomendados, livro)) {
+        inserir_livro(leitor_destino->livros_recomendados, livro);
+    }
+    
+    printf("%s recomendou \"%s\" para %s.\n", 
+           leitor_origem->nome, obter_titulo_livro(livro), leitor_destino->nome);
+}
+
+void imprimir_livros_recomendados(Leitor* leitor) {
+    if (leitor == NULL || leitor->livros_recomendados == NULL) {
+        printf("Nenhum livro recomendado.\n");
+        return;
+    }
+    
+    imprimir_lista_livro(leitor->livros_recomendados);
+}
+
+void aceitar_recomendacao(Leitor* leitor, Livro* livro) {
+    if (leitor == NULL || livro == NULL) {
+        printf("Erro: Parâmetros inválidos.\n");
+        return;
+    }
+    
+    // Verificar se o livro está na lista de recomendados usando função do livro.c
+    if (!livro_ja_existe_na_lista(leitor->livros_recomendados, livro)) {
+        printf("Erro: Livro não está na lista de recomendados.\n");
+        return;
+    }
+    
+    // Se o livro não está na lista de desejados, adicionar usando função do livro.c
+    if (!livro_ja_existe_na_lista(leitor->livros_desejados, livro)) {
+        inserir_livro(leitor->livros_desejados, livro);
+    }
+    
+    // Remover da lista de recomendados usando função do livro.c
+    remover_livro_da_lista(leitor->livros_recomendados, livro);
+    
+    printf("%s aceitou a recomendação de \"%s\".\n", leitor->nome, obter_titulo_livro(livro));
 }
