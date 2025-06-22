@@ -36,6 +36,11 @@ void imprimir_livros_desejados(Leitor* leitor);
 // Funcionalidades do comando 3
 void recomendar_livro(Leitor* leitor_origem, Livro* livro, Leitor* leitor_destino);
 void imprimir_livros_recomendados(Leitor* leitor);
+
+// Funcionalidades do comando 4
 void aceitar_recomendacao(Leitor* leitor, Livro* livro);
+
+// Funcionalidades do comando 5
+void remover_recomendacao(Leitor* leitor, Livro* livro);
 
 #endif

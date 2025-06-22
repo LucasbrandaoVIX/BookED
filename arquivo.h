@@ -19,5 +19,6 @@ void executar_comando_adicionar_livro_lido(Lista_leitores* lista_leitores, Lista
 void executar_comando_adicionar_livro_desejado(Lista_leitores* lista_leitores, Lista_livro* lista_livros, int id_leitor, int id_livro);
 void executar_comando_recomendar_livro(Lista_leitores* lista_leitores, Lista_livro* lista_livros, int id_leitor_origem, int id_livro, int id_leitor_destino);
 void executar_comando_aceitar_recomendacao(Lista_leitores* lista_leitores, Lista_livro* lista_livros, int id_leitor, int id_livro);
+void executar_comando_remover_recomendacao(Lista_leitores* lista_leitores, Lista_livro* lista_livros, int id_leitor, int id_livro);
 
 #endif
