@@ -12,6 +12,7 @@ struct Leitor {
     int n_afinidades;
     char afinidades[MAX_AFINIDADES][TAMANHO_MAXIMO];
     Lista_livro* livros_lidos; // Lista de livros lidos pelo leitor
+    Lista_livro* livros_desejados; // Lista de livros desejados pelo leitor
 };
 
 struct Celula {
@@ -76,6 +77,7 @@ Leitor* inicializa_leitor(int indentificador, char nome[TAMANHO_MAXIMO], int n_a
     // Atribuição completa
 
     novo_leitor->livros_lidos = criar_lista_livro(); // Inicializar lista de livros lidos
+    novo_leitor->livros_desejados = criar_lista_livro(); // Inicializar lista de livros desejados
 
     return novo_leitor; // Retornar o ponteiro para o novo leitor
 
@@ -93,28 +95,21 @@ void imprime_leitor(Leitor* leitor) {
     printf("\n");
     printf("Livros lidos:\n");
     imprimir_livros_lidos(leitor);
+    printf("Livros desejados:\n");
+    imprimir_livros_desejados(leitor);
     printf("---\n");
 }
 
-char* get_nome_leitor(Leitor* leitor) {
-    if (leitor == NULL) return NULL;
-    return leitor->nome;
-}
-
 void libera_lista_leitores(Lista_leitores* lista){
-    if (lista == NULL) return;
 
     Celula* aux = lista->primeiro;
 
     while (aux != NULL){
         Celula* temp = aux;
         aux = aux->proximo;
-        // Note: We don't free the leitor here because the books in livros_lidos 
-        // are shared references from the main book list
         free(temp);
     }
-    
-    free(lista);
+
 }
 
 void adicionar_livro_lido(Leitor* leitor, Livro* livro) {
@@ -134,6 +129,25 @@ void imprimir_livros_lidos(Leitor* leitor) {
     }
     
     imprimir_lista_livro(leitor->livros_lidos);
+}
+
+void adicionar_livro_desejado(Leitor* leitor, Livro* livro) {
+    if (leitor == NULL || livro == NULL) {
+        printf("Erro: Leitor ou livro inválido.\n");
+        return;
+    }
+    
+    inserir_livro(leitor->livros_desejados, livro);
+    printf("Livro adicionado à lista de desejados do leitor %s.\n", leitor->nome);
+}
+
+void imprimir_livros_desejados(Leitor* leitor) {
+    if (leitor == NULL || leitor->livros_desejados == NULL) {
+        printf("Nenhum livro desejado.\n");
+        return;
+    }
+    
+    imprimir_lista_livro(leitor->livros_desejados);
 }
 
 Leitor* buscar_leitor_por_id(Lista_leitores* lista, int id) {

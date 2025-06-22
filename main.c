@@ -113,6 +113,23 @@ void executar_comando_adicionar_livro_lido(Lista_leitores* lista_leitores, Lista
     adicionar_livro_lido(leitor, livro);
 }
 
+void executar_comando_adicionar_livro_desejado(Lista_leitores* lista_leitores, Lista_livro* lista_livros, int id_leitor, int id_livro) {
+    Leitor* leitor = buscar_leitor_por_id(lista_leitores, id_leitor);
+    Livro* livro = buscar_livro_por_id(lista_livros, id_livro);
+    
+    if (leitor == NULL) {
+        printf("Erro: Leitor com ID %d não encontrado.\n", id_leitor);
+        return;
+    }
+    
+    if (livro == NULL) {
+        printf("Erro: Livro com ID %d não encontrado.\n", id_livro);
+        return;
+    }
+    
+    adicionar_livro_desejado(leitor, livro);
+}
+
 void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livros) {
     FILE* arq_comandos;
     arq_comandos = fopen("comandos.txt", "r");
@@ -149,6 +166,19 @@ void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livro
                 
                 // Execute command
                 executar_comando_adicionar_livro_lido(lista_leitores, lista_livros, id_leitor, id_livro);
+                break;
+            }
+            case 2: { // Adicionar Livro Desejado
+                token = strtok(NULL, ";");
+                if (token == NULL) continue;
+                int id_leitor = atoi(token);
+                
+                token = strtok(NULL, ";");
+                if (token == NULL) continue;
+                int id_livro = atoi(token);
+                
+                // Execute command
+                executar_comando_adicionar_livro_desejado(lista_leitores, lista_livros, id_leitor, id_livro);
                 break;
             }
             default:
