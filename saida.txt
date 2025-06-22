@@ -1,0 +1,8 @@
+Alice leu "O Iluminado"
+Alice leu "Garota Exemplar"
+Bob leu "O Nome da Rosa"
+Bob leu "Garota Exemplar"
+Clara leu "Drácula"
+Clara deseja ler "Assassinato no Expresso Oriente"
+Alice deseja ler "Orgulho e Preconceito"
+Bob deseja ler "Drácula"

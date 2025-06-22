@@ -171,3 +171,8 @@ void imprimir_lista_leitores(Lista_leitores* lista){
         aux = aux->proximo;
     }
 }
+
+char* obter_nome_leitor(Leitor* leitor) {
+    if (leitor == NULL) return NULL;
+    return leitor->nome;
+}
