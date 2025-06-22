@@ -22,4 +22,5 @@ void libera_lista_leitores(Lista_leitores*);
 void adicionar_livro_lido(Leitor* leitor, Livro* livro);
 void imprimir_livros_lidos(Leitor* leitor);
 Leitor* buscar_leitor_por_id(Lista_leitores* lista, int id);
+char* get_nome_leitor(Leitor* leitor);
 #endif

@@ -96,23 +96,85 @@ void registrar_livros_from_txt(Lista_livro* lista) {
     fclose(arq_livros);
 }
 
+void executar_comando_adicionar_livro_lido(Lista_leitores* lista_leitores, Lista_livro* lista_livros, int id_leitor, int id_livro) {
+    Leitor* leitor = buscar_leitor_por_id(lista_leitores, id_leitor);
+    Livro* livro = buscar_livro_por_id(lista_livros, id_livro);
+    
+    if (leitor == NULL) {
+        printf("Erro: Leitor com ID %d não encontrado.\n", id_leitor);
+        return;
+    }
+    
+    if (livro == NULL) {
+        printf("Erro: Livro com ID %d não encontrado.\n", id_livro);
+        return;
+    }
+    
+    adicionar_livro_lido(leitor, livro);
+}
+
+void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livros) {
+    FILE* arq_comandos;
+    arq_comandos = fopen("comandos.txt", "r");
+    if (arq_comandos == NULL) {
+        printf("Error opening comandos.txt file\n");
+        return;
+    }
+
+    char linha[256];
+    fgets(linha, sizeof(linha), arq_comandos); // Pular o cabeçalho
+
+    while (fgets(linha, sizeof(linha), arq_comandos)) {
+        // Remove newline character
+        linha[strcspn(linha, "\n")] = 0;
+        
+        // Skip comment lines
+        if (linha[0] == '/' && linha[1] == '/') continue;
+        
+        // Parse command
+        char* token = strtok(linha, ";");
+        if (token == NULL) continue;
+        
+        int comando = atoi(token);
+        
+        switch (comando) {
+            case 1: { // Adicionar Livro Lido
+                token = strtok(NULL, ";");
+                if (token == NULL) continue;
+                int id_leitor = atoi(token);
+                
+                token = strtok(NULL, ";");
+                if (token == NULL) continue;
+                int id_livro = atoi(token);
+                
+                // Execute command
+                executar_comando_adicionar_livro_lido(lista_leitores, lista_livros, id_leitor, id_livro);
+                break;
+            }
+            default:
+                printf("Comando %d não implementado ainda.\n", comando);
+                break;
+        }
+    }
+
+    fclose(arq_comandos);
+}
+
+
+
 int main() {
 
     Lista_leitores* lista_leitores = criar_lista_leitores();
     Lista_livro* lista_livros = criar_lista_livro();
     
+    printf("=== CARREGANDO DADOS ===\n");
     registrar_leitores_from_txt(lista_leitores);
     registrar_livros_from_txt(lista_livros);
-
-    // Exemplo de uso: adicionar livro lido para um leitor
-    Leitor* alice = buscar_leitor_por_id(lista_leitores, 1);
-    Livro* livro_terror = buscar_livro_por_id(lista_livros, 1); // O Iluminado
     
-    if (alice != NULL && livro_terror != NULL) {
-        adicionar_livro_lido(alice, livro_terror);
-    }
-
-    printf("=== LISTA DE LEITORES ===\n");
+    printf("=== PROCESSANDO COMANDOS ===\n");
+    processar_comandos(lista_leitores, lista_livros);
+    
+    printf("\n=== LISTA FINAL DE LEITORES ===\n");
     imprimir_lista_leitores(lista_leitores);
     
     libera_lista_leitores(lista_leitores);

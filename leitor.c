@@ -96,16 +96,25 @@ void imprime_leitor(Leitor* leitor) {
     printf("---\n");
 }
 
+char* get_nome_leitor(Leitor* leitor) {
+    if (leitor == NULL) return NULL;
+    return leitor->nome;
+}
+
 void libera_lista_leitores(Lista_leitores* lista){
+    if (lista == NULL) return;
 
     Celula* aux = lista->primeiro;
 
     while (aux != NULL){
         Celula* temp = aux;
         aux = aux->proximo;
+        // Note: We don't free the leitor here because the books in livros_lidos 
+        // are shared references from the main book list
         free(temp);
     }
-
+    
+    free(lista);
 }
 
 void adicionar_livro_lido(Leitor* leitor, Livro* livro) {

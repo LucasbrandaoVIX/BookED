@@ -91,4 +91,9 @@ Livro* buscar_livro_por_id(Lista_livro* lista, int id) {
     return NULL;
 }
 
+char* get_titulo_livro(Livro* livro) {
+    if (livro == NULL) return NULL;
+    return livro->titulo;
+}
+
 
