@@ -9,3 +9,5 @@ Bob deseja ler "Drácula"
 Alice recomendou "O Iluminado" para Bob
 Bob recomendou "O Nome da Rosa" para Alice
 Clara recomendou "A Culpa é das Estrelas" para Bob
+Bob aceitou a recomendação de "O Iluminado"
+Alice aceitou a recomendação de "O Nome da Rosa"
