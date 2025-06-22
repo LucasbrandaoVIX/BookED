@@ -96,4 +96,46 @@ char* obter_titulo_livro(Livro* livro) {
     return livro->titulo;
 }
 
+int livro_ja_existe_na_lista(Lista_livro* lista, Livro* livro) {
+    if (lista == NULL || livro == NULL) return 0;
+    
+    Celula* aux = lista->primeiro;
+    while (aux != NULL) {
+        if (aux->livro->identificador == livro->identificador) {
+            return 1; // Livro encontrado
+        }
+        aux = aux->proximo;
+    }
+    return 0; // Livro não encontrado
+}
+
+void remover_livro_da_lista(Lista_livro* lista, Livro* livro) {
+    if (lista == NULL || livro == NULL) return;
+    
+    Celula* aux = lista->primeiro;
+    Celula* anterior = NULL;
+    
+    while (aux != NULL) {
+        if (aux->livro->identificador == livro->identificador) {
+            // Remover o nó
+            if (anterior == NULL) {
+                // Primeiro nó
+                lista->primeiro = aux->proximo;
+                if (lista->ultimo == aux) {
+                    lista->ultimo = NULL;
+                }
+            } else {
+                anterior->proximo = aux->proximo;
+                if (lista->ultimo == aux) {
+                    lista->ultimo = anterior;
+                }
+            }
+            free(aux);
+            return;
+        }
+        anterior = aux;
+        aux = aux->proximo;
+    }
+}
+
 

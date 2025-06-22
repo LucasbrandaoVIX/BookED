@@ -6,3 +6,6 @@ Clara leu "Drácula"
 Clara deseja ler "Assassinato no Expresso Oriente"
 Alice deseja ler "Orgulho e Preconceito"
 Bob deseja ler "Drácula"
+Alice recomendou "O Iluminado" para Bob
+Bob recomendou "O Nome da Rosa" para Alice
+Clara recomendou "A Culpa é das Estrelas" para Bob

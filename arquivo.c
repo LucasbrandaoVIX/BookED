@@ -47,6 +47,9 @@ void registrar_leitores_from_txt(Lista_leitores* lista) {
         char nome[TAMANHO_MAXIMO];
         char afinidades[MAX_AFINIDADES][TAMANHO_MAXIMO];
 
+        // Remove newline character
+        linha[strcspn(linha, "\n")] = 0;
+
         // Separar os campos usando strtok
         char* token = strtok(linha, ";");
         if (token == NULL) continue;
@@ -54,7 +57,8 @@ void registrar_leitores_from_txt(Lista_leitores* lista) {
 
         token = strtok(NULL, ";");
         if (token == NULL) continue;
-        strncpy(nome, token, TAMANHO_MAXIMO);
+        strncpy(nome, token, TAMANHO_MAXIMO - 1);
+        nome[TAMANHO_MAXIMO - 1] = '\0';
 
         token = strtok(NULL, ";");
         if (token == NULL) continue;
@@ -62,10 +66,14 @@ void registrar_leitores_from_txt(Lista_leitores* lista) {
 
         // Afinidades
         int i = 0;
-        while ((token = strtok(NULL, ";")) != NULL && i < MAX_AFINIDADES) {
+        while ((token = strtok(NULL, ";")) != NULL && i < MAX_AFINIDADES && i < n_afinidades) {
             // Remover espaços em branco do início
             while (*token == ' ') token++;
-            strncpy(afinidades[i], token, TAMANHO_MAXIMO);
+            // Remove newline at the end
+            char* newline = strchr(token, '\n');
+            if (newline) *newline = '\0';
+            strncpy(afinidades[i], token, TAMANHO_MAXIMO - 1);
+            afinidades[i][TAMANHO_MAXIMO - 1] = '\0';
             i++;
         }
 
@@ -93,21 +101,27 @@ void registrar_livros_from_txt(Lista_livro* lista) {
         char autor[TAMANHO_MAXIMO];
         char genero[TAMANHO_MAXIMO];
 
+        // Remove newline character
+        linha[strcspn(linha, "\n")] = 0;
+
         char* token = strtok(linha, ";");
         if (token == NULL) continue;
         id = atoi(token);
 
         token = strtok(NULL, ";");
         if (token == NULL) continue;
-        strncpy(titulo, token, TAMANHO_MAXIMO);
+        strncpy(titulo, token, TAMANHO_MAXIMO - 1);
+        titulo[TAMANHO_MAXIMO - 1] = '\0';
 
         token = strtok(NULL, ";");
         if (token == NULL) continue;
-        strncpy(autor, token, TAMANHO_MAXIMO);
+        strncpy(autor, token, TAMANHO_MAXIMO - 1);
+        autor[TAMANHO_MAXIMO - 1] = '\0';
 
         token = strtok(NULL, ";");
         if (token == NULL) continue;
-        strncpy(genero, token, TAMANHO_MAXIMO);
+        strncpy(genero, token, TAMANHO_MAXIMO - 1);
+        genero[TAMANHO_MAXIMO - 1] = '\0';
 
         token = strtok(NULL, ";");
         if (token == NULL) continue;
@@ -164,6 +178,37 @@ void executar_comando_adicionar_livro_desejado(Lista_leitores* lista_leitores, L
     escrever_saida(mensagem);
 }
 
+void executar_comando_recomendar_livro(Lista_leitores* lista_leitores, Lista_livro* lista_livros, int id_leitor_origem, int id_livro, int id_leitor_destino) {
+    Leitor* leitor_origem = buscar_leitor_por_id(lista_leitores, id_leitor_origem);
+    Livro* livro = buscar_livro_por_id(lista_livros, id_livro);
+    Leitor* leitor_destino = buscar_leitor_por_id(lista_leitores, id_leitor_destino);
+    
+    if (leitor_origem == NULL) {
+        printf("Erro: Leitor origem com ID %d não encontrado.\n", id_leitor_origem);
+        return;
+    }
+    
+    if (livro == NULL) {
+        printf("Erro: Livro com ID %d não encontrado.\n", id_livro);
+        return;
+    }
+    
+    if (leitor_destino == NULL) {
+        printf("Erro: Leitor destino com ID %d não encontrado.\n", id_leitor_destino);
+        return;
+    }
+    
+    recomendar_livro(leitor_origem, livro, leitor_destino);
+    
+    // Escrever no arquivo de saída
+    char mensagem[256];
+    sprintf(mensagem, "%s recomendou \"%s\" para %s", 
+            obter_nome_leitor(leitor_origem), 
+            obter_titulo_livro(livro), 
+            obter_nome_leitor(leitor_destino));
+    escrever_saida(mensagem);
+}
+
 void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livros) {
     FILE* arq_comandos;
     arq_comandos = fopen("comandos.txt", "r");
@@ -181,6 +226,9 @@ void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livro
         
         // Skip comment lines
         if (linha[0] == '/' && linha[1] == '/') continue;
+        
+        // Skip empty lines
+        if (strlen(linha) == 0) continue;
         
         // Parse command
         char* token = strtok(linha, ";");
@@ -213,6 +261,23 @@ void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livro
                 
                 // Execute command
                 executar_comando_adicionar_livro_desejado(lista_leitores, lista_livros, id_leitor, id_livro);
+                break;
+            }
+            case 3: { // Recomendar Livro
+                token = strtok(NULL, ";");
+                if (token == NULL) continue;
+                int id_leitor_origem = atoi(token);
+                
+                token = strtok(NULL, ";");
+                if (token == NULL) continue;
+                int id_livro = atoi(token);
+                
+                token = strtok(NULL, ";");
+                if (token == NULL) continue;
+                int id_leitor_destino = atoi(token);
+                
+                // Execute command
+                executar_comando_recomendar_livro(lista_leitores, lista_livros, id_leitor_origem, id_livro, id_leitor_destino);
                 break;
             }
             default:

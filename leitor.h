@@ -25,4 +25,7 @@ Leitor* buscar_leitor_por_id(Lista_leitores* lista, int id);
 void adicionar_livro_desejado(Leitor* leitor, Livro* livro);
 void imprimir_livros_desejados(Leitor* leitor);
 char* obter_nome_leitor(Leitor* leitor);
+void recomendar_livro(Leitor* leitor_origem, Livro* livro, Leitor* leitor_destino);
+void imprimir_livros_recomendados(Leitor* leitor);
+void aceitar_recomendacao(Leitor* leitor, Livro* livro);
 #endif
