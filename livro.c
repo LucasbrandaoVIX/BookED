@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "livro.h"
 
 #define TAMANHO_MAXIMO 100
@@ -75,6 +76,19 @@ void imprimir_lista_livro(Lista_livro* lista_livro){
         imprime_livro(aux->livro);
         aux = aux->proximo;
     }
+}
+
+Livro* buscar_livro_por_id(Lista_livro* lista, int id) {
+    if (lista == NULL) return NULL;
+    
+    Celula* aux = lista->primeiro;
+    while (aux != NULL) {
+        if (aux->livro->identificador == id) {
+            return aux->livro;
+        }
+        aux = aux->proximo;
+    }
+    return NULL;
 }
 
 

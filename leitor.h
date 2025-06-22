@@ -2,6 +2,7 @@
 #define LEITOR_H
 #include <stdio.h>
 #include <string.h>
+#include "livro.h"
 
 #define TAMANHO_MAXIMO 100
 #define MAX_AFINIDADES 10
@@ -18,4 +19,7 @@ void imprimir_lista_leitores(Lista_leitores* lista);
 Leitor* inicializa_leitor(int indentificador, char nome[TAMANHO_MAXIMO], int n_afinidades, char afinidades[][TAMANHO_MAXIMO]);
 void imprime_leitor(Leitor* leitor);
 void libera_lista_leitores(Lista_leitores*);
+void adicionar_livro_lido(Leitor* leitor, Livro* livro);
+void imprimir_livros_lidos(Leitor* leitor);
+Leitor* buscar_leitor_por_id(Lista_leitores* lista, int id);
 #endif
