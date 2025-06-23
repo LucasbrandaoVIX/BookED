@@ -27,6 +27,7 @@ Este projeto é um sistema para gerenciar leitores e livros, desenvolvido em C.
 3. **Recomendar Livro** (Comando 3): Um leitor pode recomendar um livro para outro leitor.
 4. **Aceitar Recomendação** (Comando 4): Um leitor pode aceitar uma recomendação, movendo o livro da lista de recomendados para a lista de desejados.
 5. **Remover Recomendação** (Comando 5): Um leitor pode remover uma recomendação da sua lista de recomendados.
+6. **Descobrir Livros em Comum** (Comando 6): Identifica livros que dois leitores leram em comum.
 
 ### Módulos
 
@@ -90,6 +91,7 @@ O programa:
 | 3 | Recomendar Livro | id_leitor_origem;id_livro;id_leitor_destino | Recomenda livro para outro leitor |
 | 4 | Aceitar Recomendação | id_leitor;id_livro;0 | Move livro de recomendados para desejados |
 | 5 | Remover Recomendação | id_leitor;id_livro;0 | Remove livro da lista de recomendados |
+| 6 | Descobrir Livros em Comum | id_leitor1;id_leitor2;0 | Encontra livros lidos por ambos os leitores |
 
 ## Próximos Passos
 

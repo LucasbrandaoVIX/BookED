@@ -257,6 +257,29 @@ void executar_comando_remover_recomendacao(Lista_leitores* lista_leitores, Lista
     escrever_saida(mensagem);
 }
 
+void executar_comando_descobrir_livros_em_comum(Lista_leitores* lista_leitores, int id_leitor1, int id_leitor2) {
+    Leitor* leitor1 = buscar_leitor_por_id(lista_leitores, id_leitor1);
+    Leitor* leitor2 = buscar_leitor_por_id(lista_leitores, id_leitor2);
+    
+    if (leitor1 == NULL) {
+        printf("Erro: Leitor com ID %d não encontrado.\n", id_leitor1);
+        return;
+    }
+    
+    if (leitor2 == NULL) {
+        printf("Erro: Leitor com ID %d não encontrado.\n", id_leitor2);
+        return;
+    }
+    
+    // Exibir no console
+    descobrir_livros_em_comum_leitores(leitor1, leitor2);
+    
+    // Escrever no arquivo de saída
+    char resultado[512];
+    descobrir_livros_em_comum_leitores_para_saida(leitor1, leitor2, resultado);
+    escrever_saida(resultado);
+}
+
 void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livros) {
     FILE* arq_comandos;
     arq_comandos = fopen("comandos.txt", "r");
@@ -352,6 +375,21 @@ void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livro
                 
                 // Execute command
                 executar_comando_remover_recomendacao(lista_leitores, lista_livros, id_leitor, id_livro);
+                break;
+            }
+            case 6: { // Descobrir Livros em Comum
+                token = strtok(NULL, ";");
+                if (token == NULL) continue;
+                int id_leitor1 = atoi(token);
+                
+                token = strtok(NULL, ";"); // Skip param2 (not used)
+                
+                token = strtok(NULL, ";");
+                if (token == NULL) continue;
+                int id_leitor2 = atoi(token);
+                
+                // Execute command
+                executar_comando_descobrir_livros_em_comum(lista_leitores, id_leitor1, id_leitor2);
                 break;
             }
             default:

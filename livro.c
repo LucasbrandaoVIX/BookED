@@ -138,4 +138,58 @@ void remover_livro_da_lista(Lista_livro* lista, Livro* livro) {
     }
 }
 
+void descobrir_livros_em_comum(Lista_livro* lista_lidos1, Lista_livro* lista_lidos2, char* nome1, char* nome2) {
+    if (lista_lidos1 == NULL || lista_lidos2 == NULL) {
+        printf("Erro: Parâmetros inválidos.\n");
+        return;
+    }
+    
+    printf("Livros em comum entre %s e %s:\n", nome1, nome2);
+    
+    int livros_encontrados = 0;
+    
+    Celula* aux1 = lista_lidos1->primeiro;
+    while (aux1 != NULL) {
+        if (livro_ja_existe_na_lista(lista_lidos2, aux1->livro)) {
+            printf("- %s\n", obter_titulo_livro(aux1->livro));
+            livros_encontrados++;
+        }
+        aux1 = aux1->proximo;
+    }
+    
+    if (livros_encontrados == 0) {
+        printf("Nenhum livro em comum encontrado.\n");
+    } else {
+        printf("Total: %d livro(s) em comum.\n", livros_encontrados);
+    }
+}
+
+void descobrir_livros_em_comum_para_saida(Lista_livro* lista_lidos1, Lista_livro* lista_lidos2, char* nome1, char* nome2, char* resultado) {
+    if (lista_lidos1 == NULL || lista_lidos2 == NULL || resultado == NULL) {
+        strcpy(resultado, "Erro: Parâmetros inválidos");
+        return;
+    }
+    
+    char livros_comuns[512] = "";
+    int livros_encontrados = 0;
+    
+    Celula* aux1 = lista_lidos1->primeiro;
+    while (aux1 != NULL) {
+        if (livro_ja_existe_na_lista(lista_lidos2, aux1->livro)) {
+            if (livros_encontrados > 0) {
+                strcat(livros_comuns, ", ");
+            }
+            strcat(livros_comuns, obter_titulo_livro(aux1->livro));
+            livros_encontrados++;
+        }
+        aux1 = aux1->proximo;
+    }
+    
+    if (livros_encontrados == 0) {
+        sprintf(resultado, "Livros em comum entre %s e %s: Nenhum", nome1, nome2);
+    } else {
+        sprintf(resultado, "Livros em comum entre %s e %s: %s", nome1, nome2, livros_comuns);
+    }
+}
+
 

@@ -43,4 +43,8 @@ void aceitar_recomendacao(Leitor* leitor, Livro* livro);
 // Funcionalidades do comando 5
 void remover_recomendacao(Leitor* leitor, Livro* livro);
 
+// Funcionalidade adicional
+void descobrir_livros_em_comum_leitores(Leitor* leitor1, Leitor* leitor2);
+void descobrir_livros_em_comum_leitores_para_saida(Leitor* leitor1, Leitor* leitor2, char* resultado);
+
 #endif
