@@ -14,6 +14,7 @@ struct Leitor {
     Lista_livro* livros_lidos; // Lista de livros lidos pelo leitor
     Lista_livro* livros_desejados; // Lista de livros desejados pelo leitor
     Lista_livro* livros_recomendados; // Lista de livros recomendados para o leitor
+    Lista_leitores* lista_afinidades_com_leitores;
 };
 
 struct Celula {
@@ -80,9 +81,90 @@ Leitor* inicializa_leitor(int indentificador, char nome[TAMANHO_MAXIMO], int n_a
     novo_leitor->livros_lidos = criar_lista_livro(); // Inicializar lista de livros lidos
     novo_leitor->livros_desejados = criar_lista_livro(); // Inicializar lista de livros desejados
     novo_leitor->livros_recomendados = criar_lista_livro(); // Inicializar lista de livros recomendados
+    novo_leitor->lista_afinidades_com_leitores = criar_lista_leitores(); // Inicializar lista de afinidades
 
     return novo_leitor; // Retornar o ponteiro para o novo leitor
 
+}
+
+int tem_afinidade_genero(Leitor* leitor1, Leitor* leitor2) {
+    if (leitor1 == NULL || leitor2 == NULL) return 0;
+    if (leitor1->indentificador == leitor2->indentificador) return 0; // Mesmo leitor
+    
+    // Verificar se há gêneros em comum
+    for (int i = 0; i < leitor1->n_afinidades; i++) {
+        for (int j = 0; j < leitor2->n_afinidades; j++) {
+            if (strcmp(leitor1->afinidades[i], leitor2->afinidades[j]) == 0) {
+                return 1; // Encontrou afinidade
+            }
+        }
+    }
+    return 0; // Não há afinidade
+}
+
+void calcular_afinidades_leitor(Leitor* leitor, Lista_leitores* lista_todos_leitores) {
+    if (leitor == NULL || lista_todos_leitores == NULL) return;
+    
+    Celula* aux = lista_todos_leitores->primeiro;
+    while (aux != NULL) {
+        if (tem_afinidade_genero(leitor, aux->leitor)) {
+            // Verificar se já não está na lista de afinidades
+            Celula* aux_afinidade = leitor->lista_afinidades_com_leitores->primeiro;
+            int ja_existe = 0;
+            while (aux_afinidade != NULL) {
+                if (aux_afinidade->leitor->indentificador == aux->leitor->indentificador) {
+                    ja_existe = 1;
+                    break;
+                }
+                aux_afinidade = aux_afinidade->proximo;
+            }
+            
+            if (!ja_existe) {
+                inserir_leitor(leitor->lista_afinidades_com_leitores, aux->leitor);
+            }
+        }
+        aux = aux->proximo;
+    }
+}
+
+void construir_rede_afinidades(Lista_leitores* lista_leitores) {
+    if (lista_leitores == NULL) return;
+    
+    printf("=== CONSTRUINDO REDE DE AFINIDADES ===\n");
+    
+    Celula* aux = lista_leitores->primeiro;
+    while (aux != NULL) {
+        calcular_afinidades_leitor(aux->leitor, lista_leitores);
+        aux = aux->proximo;
+    }
+    
+    // Imprimir afinidades encontradas
+    aux = lista_leitores->primeiro;
+    while (aux != NULL) {
+        imprimir_afinidades_leitor(aux->leitor);
+        aux = aux->proximo;
+    }
+}
+
+void imprimir_afinidades_leitor(Leitor* leitor) {
+    if (leitor == NULL) return;
+    
+    printf("Afinidades de %s: ", leitor->nome);
+    
+    if (leitor->lista_afinidades_com_leitores->primeiro == NULL) {
+        printf("Nenhuma afinidade encontrada.\n");
+        return;
+    }
+    
+    Celula* aux = leitor->lista_afinidades_com_leitores->primeiro;
+    int primeiro = 1;
+    while (aux != NULL) {
+        if (!primeiro) printf(", ");
+        printf("%s", aux->leitor->nome);
+        primeiro = 0;
+        aux = aux->proximo;
+    }
+    printf("\n");
 }
 
 void imprime_leitor(Leitor* leitor) {
@@ -93,6 +175,20 @@ void imprime_leitor(Leitor* leitor) {
     for (int i = 0; i < leitor->n_afinidades; i++) {
         printf("%s", leitor->afinidades[i]);
         if (i < leitor->n_afinidades - 1) printf(", ");
+    }
+    printf("\n");
+    printf("Leitores com afinidades: ");
+    if (leitor->lista_afinidades_com_leitores->primeiro == NULL) {
+        printf("Nenhum");
+    } else {
+        Celula* aux = leitor->lista_afinidades_com_leitores->primeiro;
+        int primeiro = 1;
+        while (aux != NULL) {
+            if (!primeiro) printf(", ");
+            printf("%s", aux->leitor->nome);
+            primeiro = 0;
+            aux = aux->proximo;
+        }
     }
     printf("\n");
     printf("Livros lidos:\n");

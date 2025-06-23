@@ -281,6 +281,9 @@ void executar_comando_descobrir_livros_em_comum(Lista_leitores* lista_leitores, 
 }
 
 void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livros) {
+    // Construir rede de afinidades antes de processar comandos
+    construir_rede_afinidades(lista_leitores);
+    
     FILE* arq_comandos;
     arq_comandos = fopen("comandos.txt", "r");
     if (arq_comandos == NULL) {
