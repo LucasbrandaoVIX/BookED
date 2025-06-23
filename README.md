@@ -25,6 +25,9 @@ Este projeto é um sistema para gerenciar leitores e livros, desenvolvido em C.
 1. **Adicionar Livro Lido** (Comando 1): Um leitor pode marcar um livro como lido.
 2. **Adicionar Livro Desejado** (Comando 2): Um leitor pode adicionar um livro à sua lista de desejos.
 3. **Recomendar Livro** (Comando 3): Um leitor pode recomendar um livro para outro leitor.
+4. **Aceitar Recomendação** (Comando 4): Um leitor pode aceitar uma recomendação, movendo o livro da lista de recomendados para a lista de desejados.
+5. **Remover Recomendação** (Comando 5): Um leitor pode remover uma recomendação da sua lista de recomendados.
+6. **Descobrir Livros em Comum** (Comando 6): Identifica livros que dois leitores leram em comum.
 
 ### Módulos
 
@@ -34,7 +37,7 @@ Este projeto é um sistema para gerenciar leitores e livros, desenvolvido em C.
   - `criar_lista_leitores()` / `inserir_leitor()` / `imprimir_lista_leitores()`
   - `inicializa_leitor()` / `imprime_leitor()`
   - `adicionar_livro_lido()` / `adicionar_livro_desejado()`
-  - `recomendar_livro()` / `aceitar_recomendacao()`
+  - `recomendar_livro()` / `aceitar_recomendacao()` / `remover_recomendacao()`
   - `buscar_leitor_por_id()`
 
 #### Livro (`livro.h` / `livro.c`)
@@ -55,6 +58,8 @@ Este projeto é um sistema para gerenciar leitores e livros, desenvolvido em C.
   - `executar_comando_adicionar_livro_lido()`
   - `executar_comando_adicionar_livro_desejado()`
   - `executar_comando_recomendar_livro()`
+  - `executar_comando_aceitar_recomendacao()`
+  - `executar_comando_remover_recomendacao()`
 
 ### Compilação e Execução
 
@@ -77,10 +82,21 @@ O programa:
 - **comandos.txt**: `funcionalidade;param1;param2;param3`
 - **saida.txt**: Relatório textual das ações executadas
 
+### Comandos Disponíveis
+
+| ID | Comando | Parâmetros | Descrição |
+|---|---|---|---|
+| 1 | Adicionar Livro Lido | id_leitor;id_livro;0 | Adiciona livro à lista de lidos |
+| 2 | Adicionar Livro Desejado | id_leitor;id_livro;0 | Adiciona livro à lista de desejados |
+| 3 | Recomendar Livro | id_leitor_origem;id_livro;id_leitor_destino | Recomenda livro para outro leitor |
+| 4 | Aceitar Recomendação | id_leitor;id_livro;0 | Move livro de recomendados para desejados |
+| 5 | Remover Recomendação | id_leitor;id_livro;0 | Remove livro da lista de recomendados |
+| 6 | Descobrir Livros em Comum | id_leitor1;id_leitor2;0 | Encontra livros lidos por ambos os leitores |
+
 ## Próximos Passos
 
-- Implementar comando para aceitar recomendações
+- Implementar funcionalidades de busca por gênero/afinidade
 - Adicionar validações adicionais
-- Implementar funcionalidades de busca e filtragem
+- Implementar funcionalidades de relatórios estatísticos
 
 ---

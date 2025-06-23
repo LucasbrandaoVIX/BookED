@@ -227,3 +227,39 @@ void aceitar_recomendacao(Leitor* leitor, Livro* livro) {
     
     printf("%s aceitou a recomendação de \"%s\".\n", leitor->nome, obter_titulo_livro(livro));
 }
+
+void remover_recomendacao(Leitor* leitor, Livro* livro) {
+    if (leitor == NULL || livro == NULL) {
+        printf("Erro: Parâmetros inválidos.\n");
+        return;
+    }
+    
+    // Verificar se o livro está na lista de recomendados usando função do livro.c
+    if (!livro_ja_existe_na_lista(leitor->livros_recomendados, livro)) {
+        printf("Erro: Livro não está na lista de recomendados.\n");
+        return;
+    }
+    
+    // Remover da lista de recomendados usando função do livro.c
+    remover_livro_da_lista(leitor->livros_recomendados, livro);
+    
+    printf("Recomendação de \"%s\" foi removida da lista de %s.\n", obter_titulo_livro(livro), leitor->nome);
+}
+
+void descobrir_livros_em_comum_leitores(Leitor* leitor1, Leitor* leitor2) {
+    if (leitor1 == NULL || leitor2 == NULL) {
+        printf("Erro: Parâmetros inválidos.\n");
+        return;
+    }
+    
+    descobrir_livros_em_comum(leitor1->livros_lidos, leitor2->livros_lidos, leitor1->nome, leitor2->nome);
+}
+
+void descobrir_livros_em_comum_leitores_para_saida(Leitor* leitor1, Leitor* leitor2, char* resultado) {
+    if (leitor1 == NULL || leitor2 == NULL || resultado == NULL) {
+        strcpy(resultado, "Erro: Parâmetros inválidos");
+        return;
+    }
+    
+    descobrir_livros_em_comum_para_saida(leitor1->livros_lidos, leitor2->livros_lidos, leitor1->nome, leitor2->nome, resultado);
+}

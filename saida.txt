@@ -8,4 +8,11 @@ Alice deseja ler "Orgulho e Preconceito"
 Bob deseja ler "Drácula"
 Alice recomendou "O Iluminado" para Bob
 Bob recomendou "O Nome da Rosa" para Alice
+Bob recomendou "O Senhor dos Anéis: A Sociedade do Anel" para Clara
 Clara recomendou "A Culpa é das Estrelas" para Bob
+Bob aceitou a recomendação de "O Iluminado"
+Alice aceitou a recomendação de "O Nome da Rosa"
+Bob removeu a recomendação de "A Culpa é das Estrelas"
+Clara removeu a recomendação de "O Senhor dos Anéis: A Sociedade do Anel"
+Livros em comum entre Alice e Bob: Garota Exemplar
+Livros em comum entre Alice e Clara: Nenhum
