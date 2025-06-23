@@ -47,4 +47,10 @@ void remover_recomendacao(Leitor* leitor, Livro* livro);
 void descobrir_livros_em_comum_leitores(Leitor* leitor1, Leitor* leitor2);
 void descobrir_livros_em_comum_leitores_para_saida(Leitor* leitor1, Leitor* leitor2, char* resultado);
 
+// Funcionalidades de afinidades entre leitores
+void calcular_afinidades_leitor(Leitor* leitor, Lista_leitores* lista_todos_leitores);
+void construir_rede_afinidades(Lista_leitores* lista_leitores);
+int tem_afinidade_genero(Leitor* leitor1, Leitor* leitor2);
+void imprimir_afinidades_leitor(Leitor* leitor);
+
 #endif

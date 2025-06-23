@@ -16,3 +16,6 @@ Bob removeu a recomendação de "A Culpa é das Estrelas"
 Clara removeu a recomendação de "O Senhor dos Anéis: A Sociedade do Anel"
 Livros em comum entre Alice e Bob: Garota Exemplar
 Livros em comum entre Alice e Clara: Nenhum
+Alice e Bob têm afinidades em comum
+Bob e Clara têm afinidades em comum
+Alice e Clara não têm afinidades em comum

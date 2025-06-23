@@ -280,7 +280,51 @@ void executar_comando_descobrir_livros_em_comum(Lista_leitores* lista_leitores, 
     escrever_saida(resultado);
 }
 
+void executar_comando_verificar_afinidade(Lista_leitores* lista_leitores, int id_leitor_origem, int id_leitor_destino) {
+    Leitor* leitor_origem = buscar_leitor_por_id(lista_leitores, id_leitor_origem);
+    Leitor* leitor_destino = buscar_leitor_por_id(lista_leitores, id_leitor_destino);
+    
+    if (leitor_origem == NULL) {
+        printf("Erro: Leitor origem com ID %d não encontrado.\n", id_leitor_origem);
+        return;
+    }
+    
+    if (leitor_destino == NULL) {
+        printf("Erro: Leitor destino com ID %d não encontrado.\n", id_leitor_destino);
+        return;
+    }
+    
+    int tem_afinidade = tem_afinidade_genero(leitor_origem, leitor_destino);
+    
+    // Exibir no console
+    if (tem_afinidade) {
+        printf("%s e %s têm afinidades em comum.\n", 
+               obter_nome_leitor(leitor_origem), 
+               obter_nome_leitor(leitor_destino));
+    } else {
+        printf("%s e %s não têm afinidades em comum.\n", 
+               obter_nome_leitor(leitor_origem), 
+               obter_nome_leitor(leitor_destino));
+    }
+    
+    // Escrever no arquivo de saída
+    char mensagem[256];
+    if (tem_afinidade) {
+        sprintf(mensagem, "%s e %s têm afinidades em comum", 
+                obter_nome_leitor(leitor_origem), 
+                obter_nome_leitor(leitor_destino));
+    } else {
+        sprintf(mensagem, "%s e %s não têm afinidades em comum", 
+                obter_nome_leitor(leitor_origem), 
+                obter_nome_leitor(leitor_destino));
+    }
+    escrever_saida(mensagem);
+}
+
 void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livros) {
+    // Construir rede de afinidades antes de processar comandos
+    construir_rede_afinidades(lista_leitores);
+    
     FILE* arq_comandos;
     arq_comandos = fopen("comandos.txt", "r");
     if (arq_comandos == NULL) {
@@ -390,6 +434,21 @@ void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livro
                 
                 // Execute command
                 executar_comando_descobrir_livros_em_comum(lista_leitores, id_leitor1, id_leitor2);
+                break;
+            }
+            case 7: { // Verificar Afinidade
+                token = strtok(NULL, ";");
+                if (token == NULL) continue;
+                int id_leitor_origem = atoi(token);
+                
+                token = strtok(NULL, ";"); // Skip param2 (not used)
+                
+                token = strtok(NULL, ";");
+                if (token == NULL) continue;
+                int id_leitor_destino = atoi(token);
+                
+                // Execute command
+                executar_comando_verificar_afinidade(lista_leitores, id_leitor_origem, id_leitor_destino);
                 break;
             }
             default:
