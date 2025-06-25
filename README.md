@@ -83,8 +83,8 @@ A BookED implementa um sistema inteligente de afinidades entre leitores baseado 
 ### Compilação e Execução
 
 ```bash
-gcc -o bookeditor main.c leitor.c livro.c arquivo.c
-./bookeditor
+gcc -o bookED main.c leitor.c livro.c arquivo.c
+./bookED
 ```
 
 **Fluxo de Execução do Programa:**

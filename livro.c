@@ -61,23 +61,6 @@ void inserir_livro(Lista_livro* lista, Livro* livro){
  
 }
 
-void imprime_livro(Livro* livro) {
-    if (livro == NULL) return;
-    printf("ID: %d\n", livro->identificador);
-    printf("Título: %s\n", livro->titulo);
-    printf("Autor: %s\n", livro->autor);
-    printf("Gênero: %s\n", livro->genero);
-    printf("Ano: %d\n\n", livro->ano);
-}
-
-void imprimir_lista_livro(Lista_livro* lista_livro){
-    Celula* aux = lista_livro->primeiro;
-    while (aux != NULL) {
-        imprime_livro(aux->livro);
-        aux = aux->proximo;
-    }
-}
-
 Livro* buscar_livro_por_id(Lista_livro* lista, int id) {
     if (lista == NULL) return NULL;
     
@@ -216,4 +199,21 @@ void formatar_lista_livros_como_string(Lista_livro* lista, char* resultado, int 
     }
 }
 
+/*
+void imprime_livro(Livro* livro) {
+    if (livro == NULL) return;
+    printf("ID: %d\n", livro->identificador);
+    printf("Título: %s\n", livro->titulo);
+    printf("Autor: %s\n", livro->autor);
+    printf("Gênero: %s\n", livro->genero);
+    printf("Ano: %d\n\n", livro->ano);
+}
 
+void imprimir_lista_livro(Lista_livro* lista_livro){
+    Celula* aux = lista_livro->primeiro;
+    while (aux != NULL) {
+        imprime_livro(aux->livro);
+        aux = aux->proximo;
+    }
+}
+*/

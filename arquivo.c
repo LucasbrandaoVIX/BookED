@@ -321,7 +321,7 @@ void executar_comando_verificar_afinidade(Lista_leitores* lista_leitores, int id
     escrever_saida(mensagem);
 }
 
-void executar_comando_imprimir_bookeditor(Lista_leitores* lista_leitores) {
+void executar_comando_imprimir_booked(Lista_leitores* lista_leitores) {
     if (lista_leitores == NULL) {
         printf("Erro: Lista de leitores inválida.\n");
         return;
@@ -525,7 +525,7 @@ void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livro
                 break;
             }
             case 8: { // Imprimir toda a BookED
-                executar_comando_imprimir_bookeditor(lista_leitores);
+                executar_comando_imprimir_booked(lista_leitores);
                 break;
             }
             default:
