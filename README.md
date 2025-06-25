@@ -115,7 +115,7 @@ gcc -o bookED main.c leitor.c livro.c arquivo.c
 | 5 | Remover Recomendação | id_leitor;id_livro;0 | Remove livro da lista de recomendados |
 | 6 | Descobrir Livros em Comum | id_leitor1;0;id_leitor2 | Encontra livros lidos por ambos os leitores |
 | 7 | Verificar Afinidade | id_leitor_origem;0;id_leitor_destino | Verifica se dois leitores têm gêneros em comum |
-| 8 | Imprime BookED | 
+| 8 | Imprime BookED | Nenhum | Imprime toda BookED |
 
 ### Arquivos de Saída
 
