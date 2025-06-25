@@ -53,4 +53,11 @@ void construir_rede_afinidades(Lista_leitores* lista_leitores);
 int tem_afinidade_genero(Leitor* leitor1, Leitor* leitor2);
 void imprimir_afinidades_leitor(Leitor* leitor);
 
+// Funcoes de acesso para dados opacos (comando 8)
+Lista_livro* obter_livros_lidos(Leitor* leitor);
+Lista_livro* obter_livros_desejados(Leitor* leitor);
+Lista_livro* obter_livros_recomendados(Leitor* leitor);
+Lista_leitores* obter_afinidades_leitor(Leitor* leitor);
+int obter_id_leitor(Leitor* leitor);
+
 #endif

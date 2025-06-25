@@ -22,4 +22,7 @@ char* obter_titulo_livro(Livro* livro);
 void imprime_livro(Livro* livro);
 Livro* inicializar_livro(int identificador, char titulo[], char autor[], char genero[], int ano);
 
+// Funcoes para formatar listas como string (comando 8)
+void formatar_lista_livros_como_string(Lista_livro* lista, char* resultado, int tamanho_max);
+
 #endif

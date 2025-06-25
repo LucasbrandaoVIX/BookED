@@ -359,3 +359,29 @@ void descobrir_livros_em_comum_leitores_para_saida(Leitor* leitor1, Leitor* leit
     
     descobrir_livros_em_comum_para_saida(leitor1->livros_lidos, leitor2->livros_lidos, leitor1->nome, leitor2->nome, resultado);
 }
+
+// Funcoes de acesso para dados opacos (comando 8)
+Lista_livro* obter_livros_lidos(Leitor* leitor) {
+    if (leitor == NULL) return NULL;
+    return leitor->livros_lidos;
+}
+
+Lista_livro* obter_livros_desejados(Leitor* leitor) {
+    if (leitor == NULL) return NULL;
+    return leitor->livros_desejados;
+}
+
+Lista_livro* obter_livros_recomendados(Leitor* leitor) {
+    if (leitor == NULL) return NULL;
+    return leitor->livros_recomendados;
+}
+
+Lista_leitores* obter_afinidades_leitor(Leitor* leitor) {
+    if (leitor == NULL) return NULL;
+    return leitor->lista_afinidades_com_leitores;
+}
+
+int obter_id_leitor(Leitor* leitor) {
+    if (leitor == NULL) return -1;
+    return leitor->indentificador;
+}

@@ -19,3 +19,22 @@ Livros em comum entre Alice e Clara: Nenhum
 Alice e Bob têm afinidades em comum
 Bob e Clara têm afinidades em comum
 Alice e Clara não têm afinidades em comum
+Imprime toda a BookED
+Leitor: Alice
+Lidos: O Iluminado, Garota Exemplar
+Desejados: Orgulho e Preconceito, O Nome da Rosa
+Recomendacoes: 
+Afinidades: Bob
+
+Leitor: Bob
+Lidos: O Nome da Rosa, Garota Exemplar
+Desejados: Drácula, O Iluminado
+Recomendacoes: 
+Afinidades: Alice, Clara
+
+Leitor: Clara
+Lidos: Drácula
+Desejados: Assassinato no Expresso Oriente
+Recomendacoes: 
+Afinidades: Bob
+

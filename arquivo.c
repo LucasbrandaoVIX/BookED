@@ -321,6 +321,79 @@ void executar_comando_verificar_afinidade(Lista_leitores* lista_leitores, int id
     escrever_saida(mensagem);
 }
 
+void executar_comando_imprimir_bookeditor(Lista_leitores* lista_leitores) {
+    if (lista_leitores == NULL) {
+        printf("Erro: Lista de leitores inválida.\n");
+        return;
+    }
+    
+    printf("Imprimindo toda a BookED...\n");
+    
+    // Escrever cabeçalho no arquivo de saída
+    escrever_saida("Imprime toda a BookED");
+    
+    // Percorrer todos os leitores
+    Lista_leitores* aux_lista = lista_leitores;
+    Leitor* aux_leitor = NULL;
+    
+    // Precisamos acessar a estrutura interna da lista de leitores
+    // Como é opaca, vamos iterar através dos leitores usando busca por ID
+    for (int id = 1; id <= 10; id++) { // Assumindo IDs de 1 a 10
+        aux_leitor = buscar_leitor_por_id(lista_leitores, id);
+        if (aux_leitor == NULL) continue;
+        
+        char linha_leitor[512];
+        sprintf(linha_leitor, "Leitor: %s", obter_nome_leitor(aux_leitor));
+        escrever_saida(linha_leitor);
+        
+        // Livros lidos
+        char lidos[512];
+        formatar_lista_livros_como_string(obter_livros_lidos(aux_leitor), lidos, sizeof(lidos));
+        char linha_lidos[1024];
+        sprintf(linha_lidos, "Lidos: %s", strlen(lidos) > 0 ? lidos : "");
+        escrever_saida(linha_lidos);
+        
+        // Livros desejados
+        char desejados[512];
+        formatar_lista_livros_como_string(obter_livros_desejados(aux_leitor), desejados, sizeof(desejados));
+        char linha_desejados[1024];
+        sprintf(linha_desejados, "Desejados: %s", strlen(desejados) > 0 ? desejados : "");
+        escrever_saida(linha_desejados);
+        
+        // Livros recomendados
+        char recomendados[512];
+        formatar_lista_livros_como_string(obter_livros_recomendados(aux_leitor), recomendados, sizeof(recomendados));
+        char linha_recomendados[1024];
+        sprintf(linha_recomendados, "Recomendacoes: %s", strlen(recomendados) > 0 ? recomendados : "");
+        escrever_saida(linha_recomendados);
+        
+        // Afinidades
+        char afinidades[512] = "";
+        Lista_leitores* lista_afinidades = obter_afinidades_leitor(aux_leitor);
+        if (lista_afinidades != NULL) {
+            int primeiro = 1;
+            // Iterar através dos leitores com afinidade
+            for (int aff_id = 1; aff_id <= 10; aff_id++) {
+                Leitor* leitor_afinidade = buscar_leitor_por_id(lista_afinidades, aff_id);
+                if (leitor_afinidade != NULL) {
+                    if (!primeiro) {
+                        strcat(afinidades, ", ");
+                    }
+                    strcat(afinidades, obter_nome_leitor(leitor_afinidade));
+                    primeiro = 0;
+                }
+            }
+        }
+        
+        char linha_afinidades[1024];
+        sprintf(linha_afinidades, "Afinidades: %s", strlen(afinidades) > 0 ? afinidades : "");
+        escrever_saida(linha_afinidades);
+        
+        // Linha em branco entre leitores
+        escrever_saida("");
+    }
+}
+
 void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livros) {
     // Construir rede de afinidades antes de processar comandos
     construir_rede_afinidades(lista_leitores);
@@ -449,6 +522,10 @@ void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livro
                 
                 // Execute command
                 executar_comando_verificar_afinidade(lista_leitores, id_leitor_origem, id_leitor_destino);
+                break;
+            }
+            case 8: { // Imprimir toda a BookED
+                executar_comando_imprimir_bookeditor(lista_leitores);
                 break;
             }
             default:
