@@ -20,6 +20,7 @@ Alice e Bob têm afinidades em comum
 Bob e Clara têm afinidades em comum
 Alice e Clara não têm afinidades em comum
 Imprime toda a BookED
+
 Leitor: Alice
 Lidos: O Iluminado, Garota Exemplar
 Desejados: Orgulho e Preconceito, O Nome da Rosa

@@ -330,7 +330,7 @@ void executar_comando_imprimir_booked(Lista_leitores* lista_leitores) {
     printf("Imprimindo toda a BookED...\n");
     
     // Escrever cabeçalho no arquivo de saída
-    escrever_saida("Imprime toda a BookED");
+    escrever_saida("Imprime toda a BookED\n");
     
     // Percorrer todos os leitores
     Lista_leitores* aux_lista = lista_leitores;
