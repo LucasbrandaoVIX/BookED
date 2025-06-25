@@ -22,5 +22,6 @@ void executar_comando_aceitar_recomendacao(Lista_leitores* lista_leitores, Lista
 void executar_comando_remover_recomendacao(Lista_leitores* lista_leitores, Lista_livro* lista_livros, int id_leitor, int id_livro);
 void executar_comando_descobrir_livros_em_comum(Lista_leitores* lista_leitores, int id_leitor1, int id_leitor2);
 void executar_comando_verificar_afinidade(Lista_leitores* lista_leitores, int id_leitor_origem, int id_leitor_destino);
+void executar_comando_imprimir_booked(Lista_leitores* lista_leitores);
 
 #endif

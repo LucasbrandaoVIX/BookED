@@ -45,26 +45,25 @@ A BookED implementa um sistema inteligente de afinidades entre leitores baseado 
 #### Leitor (`leitor.h` / `leitor.c`)
 - **Estruturas**: `Leitor`, `Celula`, `Lista_leitores`
 - **Gerenciamento de Listas**:
-  - `criar_lista_leitores()` / `inserir_leitor()` / `imprimir_lista_leitores()`
+  - `criar_lista_leitores()` / `inserir_leitor()`
   - `libera_lista_leitores()` / `buscar_leitor_por_id()`
 - **Funcionalidades do Leitor**:
-  - `inicializa_leitor()` / `imprime_leitor()` / `obter_nome_leitor()`
+  - `inicializa_leitor()` / `obter_nome_leitor()`
   - `adicionar_livro_lido()` / `adicionar_livro_desejado()`
   - `recomendar_livro()` / `aceitar_recomendacao()` / `remover_recomendacao()`
-  - `imprimir_livros_lidos()` / `imprimir_livros_desejados()` / `imprimir_livros_recomendados()`
 - **Sistema de Afinidades**:
   - `construir_rede_afinidades()` / `calcular_afinidades_leitor()`
-  - `tem_afinidade_genero()` / `imprimir_afinidades_leitor()`
+  - `tem_afinidade_genero()`
 - **Funcionalidades Auxiliares**:
   - `descobrir_livros_em_comum_leitores()` / `descobrir_livros_em_comum_leitores_para_saida()`
 
 #### Livro (`livro.h` / `livro.c`)
 - **Estruturas**: `Livro`, `Celula`, `Lista_livro`
 - **Gerenciamento de Listas**:
-  - `criar_lista_livro()` / `inserir_livro()` / `imprimir_lista_livro()`
+  - `criar_lista_livro()` / `inserir_livro()`
   - `buscar_livro_por_id()` / `livro_ja_existe_na_lista()` / `remover_livro_da_lista()`
 - **Funcionalidades do Livro**:
-  - `inicializar_livro()` / `imprime_livro()` / `obter_titulo_livro()`
+  - `inicializar_livro()` / `obter_titulo_livro()`
 - **Análise Comparativa**:
   - `descobrir_livros_em_comum()` / `descobrir_livros_em_comum_para_saida()`
 
@@ -83,8 +82,8 @@ A BookED implementa um sistema inteligente de afinidades entre leitores baseado 
 ### Compilação e Execução
 
 ```bash
-gcc -o bookeditor main.c leitor.c livro.c arquivo.c
-./bookeditor
+gcc -o bookED main.c leitor.c livro.c arquivo.c
+./bookED
 ```
 
 **Fluxo de Execução do Programa:**
@@ -115,11 +114,11 @@ gcc -o bookeditor main.c leitor.c livro.c arquivo.c
 | 5 | Remover Recomendação | id_leitor;id_livro;0 | Remove livro da lista de recomendados |
 | 6 | Descobrir Livros em Comum | id_leitor1;0;id_leitor2 | Encontra livros lidos por ambos os leitores |
 | 7 | Verificar Afinidade | id_leitor_origem;0;id_leitor_destino | Verifica se dois leitores têm gêneros em comum |
+| 8 | Imprime BookED | Nenhum | Imprime toda BookED |
 
 ### Arquivos de Saída
 
 - **saida.txt**: Contém o log detalhado de todas as operações executadas
-- **Console**: Exibe informações em tempo real e estado final dos leitores
 
 ### Estrutura de Dados Utilizada
 

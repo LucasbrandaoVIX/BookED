@@ -138,66 +138,13 @@ void construir_rede_afinidades(Lista_leitores* lista_leitores) {
         aux = aux->proximo;
     }
     
-    // Imprimir afinidades encontradas
+    /* //Imprimir afinidades encontradas
     aux = lista_leitores->primeiro;
     while (aux != NULL) {
         imprimir_afinidades_leitor(aux->leitor);
         aux = aux->proximo;
     }
-}
-
-void imprimir_afinidades_leitor(Leitor* leitor) {
-    if (leitor == NULL) return;
-    
-    printf("Afinidades de %s: ", leitor->nome);
-    
-    if (leitor->lista_afinidades_com_leitores->primeiro == NULL) {
-        printf("Nenhuma afinidade encontrada.\n");
-        return;
-    }
-    
-    Celula* aux = leitor->lista_afinidades_com_leitores->primeiro;
-    int primeiro = 1;
-    while (aux != NULL) {
-        if (!primeiro) printf(", ");
-        printf("%s", aux->leitor->nome);
-        primeiro = 0;
-        aux = aux->proximo;
-    }
-    printf("\n");
-}
-
-void imprime_leitor(Leitor* leitor) {
-    if (leitor == NULL) return;
-    printf("ID: %d\n", leitor->indentificador);
-    printf("Nome: %s\n", leitor->nome);
-    printf("Afinidades (%d): ", leitor->n_afinidades);
-    for (int i = 0; i < leitor->n_afinidades; i++) {
-        printf("%s", leitor->afinidades[i]);
-        if (i < leitor->n_afinidades - 1) printf(", ");
-    }
-    printf("\n");
-    printf("Leitores com afinidades: ");
-    if (leitor->lista_afinidades_com_leitores->primeiro == NULL) {
-        printf("Nenhum");
-    } else {
-        Celula* aux = leitor->lista_afinidades_com_leitores->primeiro;
-        int primeiro = 1;
-        while (aux != NULL) {
-            if (!primeiro) printf(", ");
-            printf("%s", aux->leitor->nome);
-            primeiro = 0;
-            aux = aux->proximo;
-        }
-    }
-    printf("\n");
-    printf("Livros lidos:\n");
-    imprimir_livros_lidos(leitor);
-    printf("Livros desejados:\n");
-    imprimir_livros_desejados(leitor);
-    printf("Livros recomendados:\n");
-    imprimir_livros_recomendados(leitor);
-    printf("---\n");
+    */
 }
 
 void libera_lista_leitores(Lista_leitores* lista){
@@ -222,15 +169,6 @@ void adicionar_livro_lido(Leitor* leitor, Livro* livro) {
     printf("Livro adicionado à lista de lidos do leitor %s.\n", leitor->nome);
 }
 
-void imprimir_livros_lidos(Leitor* leitor) {
-    if (leitor == NULL || leitor->livros_lidos == NULL) {
-        printf("Nenhum livro lido.\n");
-        return;
-    }
-    
-    imprimir_lista_livro(leitor->livros_lidos);
-}
-
 void adicionar_livro_desejado(Leitor* leitor, Livro* livro) {
     if (leitor == NULL || livro == NULL) {
         printf("Erro: Leitor ou livro inválido.\n");
@@ -239,15 +177,6 @@ void adicionar_livro_desejado(Leitor* leitor, Livro* livro) {
     
     inserir_livro(leitor->livros_desejados, livro);
     printf("Livro adicionado à lista de desejados do leitor %s.\n", leitor->nome);
-}
-
-void imprimir_livros_desejados(Leitor* leitor) {
-    if (leitor == NULL || leitor->livros_desejados == NULL) {
-        printf("Nenhum livro desejado.\n");
-        return;
-    }
-    
-    imprimir_lista_livro(leitor->livros_desejados);
 }
 
 Leitor* buscar_leitor_por_id(Lista_leitores* lista, int id) {
@@ -261,15 +190,6 @@ Leitor* buscar_leitor_por_id(Lista_leitores* lista, int id) {
         aux = aux->proximo;
     }
     return NULL;
-}
-
-void imprimir_lista_leitores(Lista_leitores* lista){
-    Celula* aux;
-    aux = lista->primeiro;
-    while (aux!=NULL){
-        imprime_leitor(aux->leitor);
-        aux = aux->proximo;
-    }
 }
 
 char* obter_nome_leitor(Leitor* leitor) {
@@ -290,15 +210,6 @@ void recomendar_livro(Leitor* leitor_origem, Livro* livro, Leitor* leitor_destin
     
     printf("%s recomendou \"%s\" para %s.\n", 
            leitor_origem->nome, obter_titulo_livro(livro), leitor_destino->nome);
-}
-
-void imprimir_livros_recomendados(Leitor* leitor) {
-    if (leitor == NULL || leitor->livros_recomendados == NULL) {
-        printf("Nenhum livro recomendado.\n");
-        return;
-    }
-    
-    imprimir_lista_livro(leitor->livros_recomendados);
 }
 
 void aceitar_recomendacao(Leitor* leitor, Livro* livro) {
@@ -359,3 +270,116 @@ void descobrir_livros_em_comum_leitores_para_saida(Leitor* leitor1, Leitor* leit
     
     descobrir_livros_em_comum_para_saida(leitor1->livros_lidos, leitor2->livros_lidos, leitor1->nome, leitor2->nome, resultado);
 }
+
+// Funcoes de acesso para dados opacos (comando 8)
+Lista_livro* obter_livros_lidos(Leitor* leitor) {
+    if (leitor == NULL) return NULL;
+    return leitor->livros_lidos;
+}
+
+Lista_livro* obter_livros_desejados(Leitor* leitor) {
+    if (leitor == NULL) return NULL;
+    return leitor->livros_desejados;
+}
+
+Lista_livro* obter_livros_recomendados(Leitor* leitor) {
+    if (leitor == NULL) return NULL;
+    return leitor->livros_recomendados;
+}
+
+Lista_leitores* obter_afinidades_leitor(Leitor* leitor) {
+    if (leitor == NULL) return NULL;
+    return leitor->lista_afinidades_com_leitores;
+}
+
+// ==================== FUNÇÕES DE IMPRESSÃO ====================
+/*
+void imprimir_afinidades_leitor(Leitor* leitor) {
+    if (leitor == NULL) return;
+    
+    printf("Afinidades de %s: ", leitor->nome);
+    
+    if (leitor->lista_afinidades_com_leitores->primeiro == NULL) {
+        printf("Nenhuma afinidade encontrada.\n");
+        return;
+    }
+    
+    Celula* aux = leitor->lista_afinidades_com_leitores->primeiro;
+    int primeiro = 1;
+    while (aux != NULL) {
+        if (!primeiro) printf(", ");
+        printf("%s", aux->leitor->nome);
+        primeiro = 0;
+        aux = aux->proximo;
+    }
+    printf("\n");
+}
+
+void imprime_leitor(Leitor* leitor) {
+    if (leitor == NULL) return;
+    printf("ID: %d\n", leitor->indentificador);
+    printf("Nome: %s\n", leitor->nome);
+    printf("Afinidades (%d): ", leitor->n_afinidades);
+    for (int i = 0; i < leitor->n_afinidades; i++) {
+        printf("%s", leitor->afinidades[i]);
+        if (i < leitor->n_afinidades - 1) printf(", ");
+    }
+    printf("\n");
+    printf("Leitores com afinidades: ");
+    if (leitor->lista_afinidades_com_leitores->primeiro == NULL) {
+        printf("Nenhum");
+    } else {
+        Celula* aux = leitor->lista_afinidades_com_leitores->primeiro;
+        int primeiro = 1;
+        while (aux != NULL) {
+            if (!primeiro) printf(", ");
+            printf("%s", aux->leitor->nome);
+            primeiro = 0;
+            aux = aux->proximo;
+        }
+    }
+    printf("\n");
+    printf("Livros lidos:\n");
+    imprimir_livros_lidos(leitor);
+    printf("Livros desejados:\n");
+    imprimir_livros_desejados(leitor);
+    printf("Livros recomendados:\n");
+    imprimir_livros_recomendados(leitor);
+    printf("---\n");
+}
+
+void imprimir_lista_leitores(Lista_leitores* lista){
+    Celula* aux;
+    aux = lista->primeiro;
+    while (aux!=NULL){
+        imprime_leitor(aux->leitor);
+        aux = aux->proximo;
+    }
+}
+
+void imprimir_livros_desejados(Leitor* leitor) {
+    if (leitor == NULL || leitor->livros_desejados == NULL) {
+        printf("Nenhum livro desejado.\n");
+        return;
+    }
+    
+    imprimir_lista_livro(leitor->livros_desejados);
+}
+
+void imprimir_livros_recomendados(Leitor* leitor) {
+    if (leitor == NULL || leitor->livros_recomendados == NULL) {
+        printf("Nenhum livro recomendado.\n");
+        return;
+    }
+    
+    imprimir_lista_livro(leitor->livros_recomendados);
+}
+
+void imprimir_livros_lidos(Leitor* leitor) {
+    if (leitor == NULL || leitor->livros_lidos == NULL) {
+        printf("Nenhum livro lido.\n");
+        return;
+    }
+    
+    imprimir_lista_livro(leitor->livros_lidos);
+}*/

@@ -18,9 +18,6 @@ int main() {
     printf("=== PROCESSANDO COMANDOS ===\n");
     processar_comandos(lista_leitores, lista_livros);
     
-    printf("\n=== LISTA FINAL DE LEITORES ===\n");
-    imprimir_lista_leitores(lista_leitores);
-    
     // Fechar arquivo de saída
     fechar_arquivo_saida();
     
