@@ -248,6 +248,15 @@ void executar_comando_aceitar_recomendacao(Lista_leitores* lista_leitores, Lista
         return;
     }
     
+    // Verificar se o livro está na lista de recomendados antes de tentar aceitar
+    if (!livro_ja_existe_na_lista(obter_livros_recomendados(leitor), livro)) {
+        char mensagem[256];
+        sprintf(mensagem, "%s não possui recomendação do livro ID %d", 
+                obter_nome_leitor(leitor), id_livro);
+        escrever_saida(mensagem);
+        return;
+    }
+    
     aceitar_recomendacao(leitor, livro);
     
     // Escrever no arquivo de saída

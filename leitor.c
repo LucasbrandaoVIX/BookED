@@ -284,7 +284,7 @@ void aceitar_recomendacao(Leitor* leitor, Livro* livro) {
     
     // Verificar se o livro está na lista de recomendados usando função do livro.c
     if (!livro_ja_existe_na_lista(leitor->livros_recomendados, livro)) {
-        printf("Erro: Livro não está na lista de recomendados.\n");
+        printf("%s não possui recomendação do livro \"%s\".\n", leitor->nome, obter_titulo_livro(livro));
         return;
     }
     
