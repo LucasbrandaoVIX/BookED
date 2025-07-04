@@ -47,12 +47,12 @@ Julia deseja ler "O Cortiço"
 Existe afinidade entre Marcus e Gaius
 Existe afinidade entre Lucius e Julia
 Marcus não pode recomendar livros para si mesmo
-Lucius recomendou "Senhora" para Gaius
-Claudia recomendou "Iracema" para Lucius
+Lucius recomenda "Senhora" para Gaius
+Lucius não precisa da recomendação de "Iracema" pois já leu este livro
 Marcus aceita recomendação de "A Hora da Estrela"
 Gaius aceita recomendação de "Senhora"
 Lucius aceita recomendação de "Iracema"
-Marcus recomendou "A Hora da Estrela" para Lucius
+Lucius não precisa da recomendação de "A Hora da Estrela" pois já leu este livro
 Lucius rejeita recomendação de "A Hora da Estrela"
 Livros em comum entre Marcus e Gaius: Nenhum livro em comum
 Livros em comum entre Lucius e Julia: Nenhum livro em comum
@@ -75,7 +75,7 @@ Afinidades: Lucius, Gaius
 
 Leitor: Lucius
 Lidos: A Hora da Estrela, O Caso da Estranha Fotografia, Iracema, A Hora da Estrela
-Desejados: A Grande Arte, Os Sertões, Nós, A Grande Arte, Iracema
+Desejados: A Grande Arte, Os Sertões, Nós, A Grande Arte
 Recomendacoes: 
 Afinidades: Marcus, Julia, Gaius, Claudia
 

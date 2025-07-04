@@ -260,6 +260,13 @@ void recomendar_livro(Leitor* leitor_origem, Livro* livro, Leitor* leitor_destin
         return;
     }
     
+    // Verificar se o leitor destino já leu o livro
+    if (livro_ja_existe_na_lista(leitor_destino->livros_lidos, livro)) {
+        printf("%s não precisa da recomendação de \"%s\" pois já leu este livro.\n", 
+               leitor_destino->nome, obter_titulo_livro(livro));
+        return;
+    }
+    
     // Verificar se o livro já está na lista de recomendados usando função do livro.c
     if (!livro_ja_existe_na_lista(leitor_destino->livros_recomendados, livro)) {
         inserir_livro(leitor_destino->livros_recomendados, livro);

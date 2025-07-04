@@ -213,11 +213,21 @@ void executar_comando_recomendar_livro(Lista_leitores* lista_leitores, Lista_liv
         return;
     }
     
+    // Verificar se o leitor destino já leu o livro
+    if (livro_ja_existe_na_lista(obter_livros_lidos(leitor_destino), livro)) {
+        char mensagem[256];
+        sprintf(mensagem, "%s não precisa da recomendação de \"%s\" pois já leu este livro", 
+                obter_nome_leitor(leitor_destino), 
+                obter_titulo_livro(livro));
+        escrever_saida(mensagem);
+        return;
+    }
+    
     recomendar_livro(leitor_origem, livro, leitor_destino);
     
     // Escrever no arquivo de saída
     char mensagem[256];
-    sprintf(mensagem, "%s recomendou \"%s\" para %s", 
+    sprintf(mensagem, "%s recomenda \"%s\" para %s", 
             obter_nome_leitor(leitor_origem), 
             obter_titulo_livro(livro), 
             obter_nome_leitor(leitor_destino));
