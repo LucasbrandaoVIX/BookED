@@ -53,7 +53,7 @@ Marcus não possui recomendação do livro ID 4
 Gaius aceita recomendação de "Senhora"
 Lucius não possui recomendação do livro ID 6
 Lucius não precisa da recomendação de "A Hora da Estrela" pois já leu este livro
-Lucius rejeita recomendação de "A Hora da Estrela"
+Lucius não possui recomendação do livro ID 4
 Livros em comum entre Marcus e Gaius: Nenhum livro em comum
 Livros em comum entre Lucius e Julia: Nenhum livro em comum
 Livros em comum entre Claudia e Livia: Nenhum livro em comum
