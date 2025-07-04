@@ -1,3 +1,9 @@
+/*
+ * Autor: Lucas Dantas Brandao
+ * 
+ * arquivo.h
+ */
+
 #ifndef ARQUIVO_H
 #define ARQUIVO_H
 #include <stdio.h>

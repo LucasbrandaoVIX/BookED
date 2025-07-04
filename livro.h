@@ -1,3 +1,9 @@
+/*
+ * Autor: Lucas Dantas Brandao
+ * 
+ * livro.h
+ */
+
 #ifndef LIVRO_H
 #define LIVRO_H
 #include <stdio.h>

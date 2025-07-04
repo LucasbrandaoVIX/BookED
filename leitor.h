@@ -1,3 +1,9 @@
+/*
+ * Autor: Lucas Dantas Brandao
+ * 
+ * leitor.h
+ */
+
 #ifndef LEITOR_H
 #define LEITOR_H
 #include <stdio.h>
