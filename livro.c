@@ -1,3 +1,9 @@
+/*
+ * Autor: Lucas Dantas Brandao
+ * 
+ * livro.c
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -169,7 +175,7 @@ void descobrir_livros_em_comum_para_saida(Lista_livro* lista_lidos1, Lista_livro
     }
     
     if (livros_encontrados == 0) {
-        sprintf(resultado, "Livros em comum entre %s e %s: Nenhum", nome1, nome2);
+        sprintf(resultado, "Livros em comum entre %s e %s: Nenhum livro em comum", nome1, nome2);
     } else {
         sprintf(resultado, "Livros em comum entre %s e %s: %s", nome1, nome2, livros_comuns);
     }

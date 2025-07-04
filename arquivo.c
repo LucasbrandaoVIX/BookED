@@ -1,3 +1,9 @@
+/*
+ * Autor: Lucas Dantas Brandao
+ * 
+ * arquivo.c
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -227,7 +233,7 @@ void executar_comando_aceitar_recomendacao(Lista_leitores* lista_leitores, Lista
     
     // Escrever no arquivo de saída
     char mensagem[256];
-    sprintf(mensagem, "%s aceitou a recomendação de \"%s\"", 
+    sprintf(mensagem, "%s aceita recomendação de \"%s\"", 
             obter_nome_leitor(leitor), 
             obter_titulo_livro(livro));
     escrever_saida(mensagem);
@@ -251,7 +257,7 @@ void executar_comando_remover_recomendacao(Lista_leitores* lista_leitores, Lista
     
     // Escrever no arquivo de saída
     char mensagem[256];
-    sprintf(mensagem, "%s removeu a recomendação de \"%s\"", 
+    sprintf(mensagem, "%s rejeita recomendação de \"%s\"", 
             obter_nome_leitor(leitor), 
             obter_titulo_livro(livro));
     escrever_saida(mensagem);
@@ -294,7 +300,7 @@ void executar_comando_verificar_afinidade(Lista_leitores* lista_leitores, int id
         return;
     }
     
-    int tem_afinidade = tem_afinidade_genero(leitor_origem, leitor_destino);
+    int tem_afinidade = tem_afinidade_genero(leitor_origem, leitor_destino, lista_leitores);
     
     // Exibir no console
     if (tem_afinidade) {
@@ -310,7 +316,7 @@ void executar_comando_verificar_afinidade(Lista_leitores* lista_leitores, int id
     // Escrever no arquivo de saída
     char mensagem[256];
     if (tem_afinidade) {
-        sprintf(mensagem, "%s e %s têm afinidades em comum", 
+        sprintf(mensagem, "Existe afinidade entre %s e %s", 
                 obter_nome_leitor(leitor_origem), 
                 obter_nome_leitor(leitor_destino));
     } else {
