@@ -16,7 +16,7 @@ Livros em comum entre Alice e Bob: Garota Exemplar
 Livros em comum entre Alice e Clara: Nenhum livro em comum
 Livros em comum entre Bob e Clara: Nenhum livro em comum
 Existe afinidade entre Bob e Clara
-Alice e Clara não têm afinidades em comum
+Existe afinidade entre Alice e Clara
 Imprime toda a BookED
 
 Leitor: Alice

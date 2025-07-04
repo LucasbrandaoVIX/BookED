@@ -93,7 +93,7 @@ Leitor* inicializa_leitor(int indentificador, char nome[TAMANHO_MAXIMO], int n_a
 
 }
 
-int tem_afinidade_genero(Leitor* leitor1, Leitor* leitor2) {
+int tem_afinidade_direta(Leitor* leitor1, Leitor* leitor2) {
     if (leitor1 == NULL || leitor2 == NULL) return 0;
     if (leitor1->indentificador == leitor2->indentificador) return 0; // Mesmo leitor
     
@@ -108,12 +108,57 @@ int tem_afinidade_genero(Leitor* leitor1, Leitor* leitor2) {
     return 0; // Não há afinidade
 }
 
+int tem_afinidade_genero(Leitor* leitor1, Leitor* leitor2, Lista_leitores* lista_todos_leitores) {
+    if (leitor1 == NULL || leitor2 == NULL || lista_todos_leitores == NULL) return 0;
+    if (leitor1->indentificador == leitor2->indentificador) return 0; // Mesmo leitor
+    
+    // Array para marcar leitores visitados (assumindo IDs de 1 a 100)
+    int visitados[101] = {0};
+    
+    // Fila para BFS (assumindo máximo 100 leitores)
+    int fila[101];
+    int inicio = 0, fim = 0;
+    
+    // Adicionar leitor inicial na fila
+    fila[fim++] = leitor1->indentificador;
+    visitados[leitor1->indentificador] = 1;
+    
+    // BFS para encontrar caminho até leitor2
+    while (inicio < fim) {
+        int id_atual = fila[inicio++];
+        Leitor* leitor_atual = buscar_leitor_por_id(lista_todos_leitores, id_atual);
+        
+        if (leitor_atual == NULL) continue;
+        
+        // Verificar todos os leitores com afinidade direta
+        Celula* aux = leitor_atual->lista_afinidades_com_leitores->primeiro;
+        while (aux != NULL) {
+            int id_vizinho = aux->leitor->indentificador;
+            
+            // Se chegou ao leitor destino
+            if (id_vizinho == leitor2->indentificador) {
+                return 1;
+            }
+            
+            // Se não foi visitado, adicionar na fila
+            if (!visitados[id_vizinho]) {
+                visitados[id_vizinho] = 1;
+                fila[fim++] = id_vizinho;
+            }
+            
+            aux = aux->proximo;
+        }
+    }
+    
+    return 0; // Não encontrou caminho
+}
+
 void calcular_afinidades_leitor(Leitor* leitor, Lista_leitores* lista_todos_leitores) {
     if (leitor == NULL || lista_todos_leitores == NULL) return;
     
     Celula* aux = lista_todos_leitores->primeiro;
     while (aux != NULL) {
-        if (tem_afinidade_genero(leitor, aux->leitor)) {
+        if (tem_afinidade_direta(leitor, aux->leitor)) {
             // Verificar se já não está na lista de afinidades
             Celula* aux_afinidade = leitor->lista_afinidades_com_leitores->primeiro;
             int ja_existe = 0;

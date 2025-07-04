@@ -50,7 +50,8 @@ void descobrir_livros_em_comum_leitores_para_saida(Leitor* leitor1, Leitor* leit
 
 // Funcionalidades de afinidades entre leitores
 void construir_rede_afinidades(Lista_leitores* lista_leitores);
-int tem_afinidade_genero(Leitor* leitor1, Leitor* leitor2);
+int tem_afinidade_direta(Leitor* leitor1, Leitor* leitor2);
+int tem_afinidade_genero(Leitor* leitor1, Leitor* leitor2, Lista_leitores* lista_todos_leitores);
 
 // Funcoes de acesso para dados opacos (comando 8)
 Lista_livro* obter_livros_lidos(Leitor* leitor);

@@ -300,7 +300,7 @@ void executar_comando_verificar_afinidade(Lista_leitores* lista_leitores, int id
         return;
     }
     
-    int tem_afinidade = tem_afinidade_genero(leitor_origem, leitor_destino);
+    int tem_afinidade = tem_afinidade_genero(leitor_origem, leitor_destino, lista_leitores);
     
     // Exibir no console
     if (tem_afinidade) {
