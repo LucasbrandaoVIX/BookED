@@ -1,39 +1,105 @@
-Alice leu "O Iluminado"
-Alice leu "Garota Exemplar"
-Bob leu "O Nome da Rosa"
-Bob leu "Garota Exemplar"
-Clara leu "Drácula"
-Clara deseja ler "Assassinato no Expresso Oriente"
-Alice deseja ler "Orgulho e Preconceito"
-Bob deseja ler "Drácula"
-Alice recomendou "O Iluminado" para Bob
-Bob recomendou "O Nome da Rosa" para Alice
-Bob recomendou "O Senhor dos Anéis: A Sociedade do Anel" para Clara
-Clara recomendou "A Culpa é das Estrelas" para Bob
-Clara aceita recomendação de "O Senhor dos Anéis: A Sociedade do Anel"
-Alice rejeita recomendação de "O Nome da Rosa"
-Livros em comum entre Alice e Bob: Garota Exemplar
-Livros em comum entre Alice e Clara: Nenhum livro em comum
-Livros em comum entre Bob e Clara: Nenhum livro em comum
-Existe afinidade entre Bob e Clara
-Existe afinidade entre Alice e Clara
+Marcus leu "O Cortiço"
+Marcus leu "O Xangô de Baker Street"
+Marcus leu "Senhora"
+Lucius leu "A Hora da Estrela"
+Lucius leu "O Caso da Estranha Fotografia"
+Lucius leu "Iracema"
+Julia leu "Agosto"
+Julia leu "A Moreninha"
+Julia leu "Incidente em Antares"
+Gaius leu "A Grande Arte"
+Gaius leu "Os Sertões"
+Gaius leu "Nós"
+Claudia leu "O Cortiço"
+Claudia leu "O Xangô de Baker Street"
+Claudia leu "Senhora"
+Livia leu "A Hora da Estrela"
+Livia leu "O Caso da Estranha Fotografia"
+Existe afinidade entre Marcus e Gaius
+Existe afinidade entre Marcus e Lucius
+Existe afinidade entre Lucius e Julia
+Existe afinidade entre Julia e Claudia
+Existe afinidade entre Claudia e Livia
+Marcus deseja ler "Agosto"
+Marcus deseja ler "A Moreninha"
+Marcus deseja ler "Incidente em Antares"
+Lucius deseja ler "A Grande Arte"
+Lucius deseja ler "Os Sertões"
+Lucius deseja ler "Nós"
+Julia deseja ler "O Cortiço"
+Julia deseja ler "O Xangô de Baker Street"
+Gaius deseja ler "Agosto"
+Gaius deseja ler "A Moreninha"
+Claudia deseja ler "Incidente em Antares"
+Claudia deseja ler "A Grande Arte"
+Livia deseja ler "Os Sertões"
+Livia deseja ler "Nós"
+Livros em comum entre Marcus e Gaius: Nenhum livro em comum
+Livros em comum entre Marcus e Lucius: Nenhum livro em comum
+Livros em comum entre Lucius e Julia: Nenhum livro em comum
+Livros em comum entre Marcus e Claudia: O Cortiço, O Xangô de Baker Street, Senhora
+Marcus leu "O Cortiço"
+Lucius leu "A Hora da Estrela"
+Julia leu "Agosto"
+Marcus deseja ler "Agosto"
+Lucius deseja ler "A Grande Arte"
+Julia deseja ler "O Cortiço"
+Existe afinidade entre Marcus e Gaius
+Existe afinidade entre Lucius e Julia
+Marcus não pode recomendar livros para si mesmo
+Lucius recomendou "Senhora" para Gaius
+Claudia recomendou "Iracema" para Lucius
+Marcus aceita recomendação de "A Hora da Estrela"
+Gaius aceita recomendação de "Senhora"
+Lucius aceita recomendação de "Iracema"
+Marcus recomendou "A Hora da Estrela" para Lucius
+Lucius rejeita recomendação de "A Hora da Estrela"
+Livros em comum entre Marcus e Gaius: Nenhum livro em comum
+Livros em comum entre Lucius e Julia: Nenhum livro em comum
+Livros em comum entre Claudia e Livia: Nenhum livro em comum
+Existe afinidade entre Marcus e Lucius
+Existe afinidade entre Julia e Claudia
+Existe afinidade entre Lucius e Julia
+Existe afinidade entre Claudia e Livia
+Existe afinidade entre Marcus e Livia
+Existe afinidade entre Marcus e Julia
+Existe afinidade entre Gaius e Claudia
+Existe afinidade entre Lucius e Livia
 Imprime toda a BookED
 
-Leitor: Alice
-Lidos: O Iluminado, Garota Exemplar
-Desejados: Orgulho e Preconceito
+Leitor: Marcus
+Lidos: O Cortiço, O Xangô de Baker Street, Senhora, O Cortiço
+Desejados: Agosto, A Moreninha, Incidente em Antares, Agosto
 Recomendacoes: 
-Afinidades: Bob
+Afinidades: Lucius, Gaius
 
-Leitor: Bob
-Lidos: O Nome da Rosa, Garota Exemplar
-Desejados: Drácula
-Recomendacoes: O Iluminado, A Culpa é das Estrelas
-Afinidades: Alice, Clara
-
-Leitor: Clara
-Lidos: Drácula
-Desejados: Assassinato no Expresso Oriente, O Senhor dos Anéis: A Sociedade do Anel
+Leitor: Lucius
+Lidos: A Hora da Estrela, O Caso da Estranha Fotografia, Iracema, A Hora da Estrela
+Desejados: A Grande Arte, Os Sertões, Nós, A Grande Arte, Iracema
 Recomendacoes: 
-Afinidades: Bob
+Afinidades: Marcus, Julia, Gaius, Claudia
+
+Leitor: Julia
+Lidos: Agosto, A Moreninha, Incidente em Antares, Agosto
+Desejados: O Cortiço, O Xangô de Baker Street, O Cortiço
+Recomendacoes: 
+Afinidades: Lucius, Claudia
+
+Leitor: Gaius
+Lidos: A Grande Arte, Os Sertões, Nós
+Desejados: Agosto, A Moreninha, Senhora
+Recomendacoes: 
+Afinidades: Marcus, Lucius
+
+Leitor: Claudia
+Lidos: O Cortiço, O Xangô de Baker Street, Senhora
+Desejados: Incidente em Antares, A Grande Arte
+Recomendacoes: 
+Afinidades: Lucius, Julia, Livia
+
+Leitor: Livia
+Lidos: A Hora da Estrela, O Caso da Estranha Fotografia
+Desejados: Os Sertões, Nós
+Recomendacoes: 
+Afinidades: Claudia
 

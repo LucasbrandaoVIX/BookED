@@ -254,6 +254,12 @@ void recomendar_livro(Leitor* leitor_origem, Livro* livro, Leitor* leitor_destin
         return;
     }
     
+    // Verificar se o leitor está tentando recomendar para si mesmo
+    if (leitor_origem->indentificador == leitor_destino->indentificador) {
+        printf("%s não pode recomendar livros para si mesmo.\n", leitor_origem->nome);
+        return;
+    }
+    
     // Verificar se o livro já está na lista de recomendados usando função do livro.c
     if (!livro_ja_existe_na_lista(leitor_destino->livros_recomendados, livro)) {
         inserir_livro(leitor_destino->livros_recomendados, livro);

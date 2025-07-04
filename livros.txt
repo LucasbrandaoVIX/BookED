@@ -1,16 +1,13 @@
 id;titulo;autor;genero;ano
-1;O Iluminado;Stephen King;Terror;1977
-2;Garota Exemplar;Gillian Flynn;Mistério;2012
-3;Orgulho e Preconceito;Jane Austen;Romance;1813
-4;Drácula;Bram Stoker;Terror;1897
-5;Assassinato no Expresso Oriente;Agatha Christie;Mistério;1934
-6;Como Eu Era Antes de Você;Jojo Moyes;Romance;2012
-7;O Cão dos Baskervilles;Arthur Conan Doyle;Mistério;1902
-8;A Culpa é das Estrelas;John Green;Romance;2012
-9;It: A Coisa;Stephen King;Terror;1986
-10;O Nome da Rosa;Umberto Eco;Mistério;1980
-11;O Senhor dos Anéis: A Sociedade do Anel;J.R.R. Tolkien;Fantasia;1954
-12;1984;George Orwell;Distopia;1949
-13;Duna;Frank Herbert;Ficção Científica;1965
-14;As Vinhas da Ira;John Steinbeck;Drama;1939
-15;Steve Jobs;Walter Isaacson;Biografia;2011
+1;O Cortiço;Aluísio Azevedo;Terror;1890
+2;O Xangô de Baker Street;Jô Soares;Mistério;1995
+3;Senhora;José de Alencar;Romance;1875
+4;A Hora da Estrela;Clarice Lispector;Terror;1977
+5;O Caso da Estranha Fotografia;Marcos Rey;Mistério;1978
+6;Iracema;José de Alencar;Romance;1865
+7;Agosto;Rubem Fonseca;Mistério;1990
+8;A Moreninha;Joaquim Manuel de Macedo;Romance;1844
+9;Incidente em Antares;Erico Verissimo;Terror;1971
+10;A Grande Arte;Rubem Fonseca;Mistério;1983
+11;Os Sertões;Euclides da Cunha;História;1902
+12;Nós;Lauro Packer;Distopia;2016

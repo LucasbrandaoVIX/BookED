@@ -204,6 +204,15 @@ void executar_comando_recomendar_livro(Lista_leitores* lista_leitores, Lista_liv
         return;
     }
     
+    // Verificar se é auto-recomendação
+    if (id_leitor_origem == id_leitor_destino) {
+        char mensagem[256];
+        sprintf(mensagem, "%s não pode recomendar livros para si mesmo", 
+                obter_nome_leitor(leitor_origem));
+        escrever_saida(mensagem);
+        return;
+    }
+    
     recomendar_livro(leitor_origem, livro, leitor_destino);
     
     // Escrever no arquivo de saída
