@@ -10,32 +10,30 @@ Alice recomendou "O Iluminado" para Bob
 Bob recomendou "O Nome da Rosa" para Alice
 Bob recomendou "O Senhor dos Anéis: A Sociedade do Anel" para Clara
 Clara recomendou "A Culpa é das Estrelas" para Bob
-Bob aceitou a recomendação de "O Iluminado"
-Alice aceitou a recomendação de "O Nome da Rosa"
-Bob removeu a recomendação de "A Culpa é das Estrelas"
-Clara removeu a recomendação de "O Senhor dos Anéis: A Sociedade do Anel"
+Clara aceita recomendação de "O Senhor dos Anéis: A Sociedade do Anel"
+Alice rejeita recomendação de "O Nome da Rosa"
 Livros em comum entre Alice e Bob: Garota Exemplar
-Livros em comum entre Alice e Clara: Nenhum
-Alice e Bob têm afinidades em comum
-Bob e Clara têm afinidades em comum
+Livros em comum entre Alice e Clara: Nenhum livro em comum
+Livros em comum entre Bob e Clara: Nenhum livro em comum
+Existe afinidade entre Bob e Clara
 Alice e Clara não têm afinidades em comum
 Imprime toda a BookED
 
 Leitor: Alice
 Lidos: O Iluminado, Garota Exemplar
-Desejados: Orgulho e Preconceito, O Nome da Rosa
+Desejados: Orgulho e Preconceito
 Recomendacoes: 
 Afinidades: Bob
 
 Leitor: Bob
 Lidos: O Nome da Rosa, Garota Exemplar
-Desejados: Drácula, O Iluminado
-Recomendacoes: 
+Desejados: Drácula
+Recomendacoes: O Iluminado, A Culpa é das Estrelas
 Afinidades: Alice, Clara
 
 Leitor: Clara
 Lidos: Drácula
-Desejados: Assassinato no Expresso Oriente
+Desejados: Assassinato no Expresso Oriente, O Senhor dos Anéis: A Sociedade do Anel
 Recomendacoes: 
 Afinidades: Bob
 

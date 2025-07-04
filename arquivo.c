@@ -233,7 +233,7 @@ void executar_comando_aceitar_recomendacao(Lista_leitores* lista_leitores, Lista
     
     // Escrever no arquivo de saída
     char mensagem[256];
-    sprintf(mensagem, "%s aceitou a recomendação de \"%s\"", 
+    sprintf(mensagem, "%s aceita recomendação de \"%s\"", 
             obter_nome_leitor(leitor), 
             obter_titulo_livro(livro));
     escrever_saida(mensagem);
@@ -257,7 +257,7 @@ void executar_comando_remover_recomendacao(Lista_leitores* lista_leitores, Lista
     
     // Escrever no arquivo de saída
     char mensagem[256];
-    sprintf(mensagem, "%s removeu a recomendação de \"%s\"", 
+    sprintf(mensagem, "%s rejeita recomendação de \"%s\"", 
             obter_nome_leitor(leitor), 
             obter_titulo_livro(livro));
     escrever_saida(mensagem);
@@ -316,7 +316,7 @@ void executar_comando_verificar_afinidade(Lista_leitores* lista_leitores, int id
     // Escrever no arquivo de saída
     char mensagem[256];
     if (tem_afinidade) {
-        sprintf(mensagem, "%s e %s têm afinidades em comum", 
+        sprintf(mensagem, "Existe afinidade entre %s e %s", 
                 obter_nome_leitor(leitor_origem), 
                 obter_nome_leitor(leitor_destino));
     } else {
