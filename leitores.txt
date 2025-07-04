@@ -1,4 +1,7 @@
 Id;nome;n_afinidades;afinidades
-1;Alice;2;Romance;Terror
-2;Bob;2;Terror;Mistério
-3;Clara;1;Mistério
+1;Marcus;2;Romance;Terror
+2;Lucius;2;Terror;Mistério
+3;Julia;1;Mistério
+4;Gaius;2;Romance;Terror
+5;Claudia;2;Mistério;História
+6;Livia;1;História

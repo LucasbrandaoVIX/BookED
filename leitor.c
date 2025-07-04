@@ -254,6 +254,19 @@ void recomendar_livro(Leitor* leitor_origem, Livro* livro, Leitor* leitor_destin
         return;
     }
     
+    // Verificar se o leitor está tentando recomendar para si mesmo
+    if (leitor_origem->indentificador == leitor_destino->indentificador) {
+        printf("%s não pode recomendar livros para si mesmo.\n", leitor_origem->nome);
+        return;
+    }
+    
+    // Verificar se o leitor destino já leu o livro
+    if (livro_ja_existe_na_lista(leitor_destino->livros_lidos, livro)) {
+        printf("%s não precisa da recomendação de \"%s\" pois já leu este livro.\n", 
+               leitor_destino->nome, obter_titulo_livro(livro));
+        return;
+    }
+    
     // Verificar se o livro já está na lista de recomendados usando função do livro.c
     if (!livro_ja_existe_na_lista(leitor_destino->livros_recomendados, livro)) {
         inserir_livro(leitor_destino->livros_recomendados, livro);
@@ -271,7 +284,7 @@ void aceitar_recomendacao(Leitor* leitor, Livro* livro) {
     
     // Verificar se o livro está na lista de recomendados usando função do livro.c
     if (!livro_ja_existe_na_lista(leitor->livros_recomendados, livro)) {
-        printf("Erro: Livro não está na lista de recomendados.\n");
+        printf("%s não possui recomendação do livro \"%s\".\n", leitor->nome, obter_titulo_livro(livro));
         return;
     }
     

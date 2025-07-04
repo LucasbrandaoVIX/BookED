@@ -204,11 +204,30 @@ void executar_comando_recomendar_livro(Lista_leitores* lista_leitores, Lista_liv
         return;
     }
     
+    // Verificar se é auto-recomendação
+    if (id_leitor_origem == id_leitor_destino) {
+        char mensagem[256];
+        sprintf(mensagem, "%s não pode recomendar livros para si mesmo", 
+                obter_nome_leitor(leitor_origem));
+        escrever_saida(mensagem);
+        return;
+    }
+    
+    // Verificar se o leitor destino já leu o livro
+    if (livro_ja_existe_na_lista(obter_livros_lidos(leitor_destino), livro)) {
+        char mensagem[256];
+        sprintf(mensagem, "%s não precisa da recomendação de \"%s\" pois já leu este livro", 
+                obter_nome_leitor(leitor_destino), 
+                obter_titulo_livro(livro));
+        escrever_saida(mensagem);
+        return;
+    }
+    
     recomendar_livro(leitor_origem, livro, leitor_destino);
     
     // Escrever no arquivo de saída
     char mensagem[256];
-    sprintf(mensagem, "%s recomendou \"%s\" para %s", 
+    sprintf(mensagem, "%s recomenda \"%s\" para %s", 
             obter_nome_leitor(leitor_origem), 
             obter_titulo_livro(livro), 
             obter_nome_leitor(leitor_destino));
@@ -226,6 +245,15 @@ void executar_comando_aceitar_recomendacao(Lista_leitores* lista_leitores, Lista
     
     if (livro == NULL) {
         printf("Erro: Livro com ID %d não encontrado.\n", id_livro);
+        return;
+    }
+    
+    // Verificar se o livro está na lista de recomendados antes de tentar aceitar
+    if (!livro_ja_existe_na_lista(obter_livros_recomendados(leitor), livro)) {
+        char mensagem[256];
+        sprintf(mensagem, "%s não possui recomendação do livro ID %d", 
+                obter_nome_leitor(leitor), id_livro);
+        escrever_saida(mensagem);
         return;
     }
     
@@ -253,6 +281,15 @@ void executar_comando_remover_recomendacao(Lista_leitores* lista_leitores, Lista
         return;
     }
     
+    // Verificar se o livro está na lista de recomendados antes de tentar rejeitar
+    if (!livro_ja_existe_na_lista(obter_livros_recomendados(leitor), livro)) {
+        char mensagem[256];
+        sprintf(mensagem, "%s não possui recomendação do livro ID %d", 
+                obter_nome_leitor(leitor), id_livro);
+        escrever_saida(mensagem);
+        return;
+    }
+
     remover_recomendacao(leitor, livro);
     
     // Escrever no arquivo de saída
