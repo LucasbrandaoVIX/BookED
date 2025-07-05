@@ -85,6 +85,11 @@ char* obter_titulo_livro(Livro* livro) {
     return livro->titulo;
 }
 
+int obter_id_livro(Livro* livro) {
+    if (livro == NULL) return -1;
+    return livro->identificador;
+}
+
 int livro_ja_existe_na_lista(Lista_livro* lista, Livro* livro) {
     if (lista == NULL || livro == NULL) return 0;
     

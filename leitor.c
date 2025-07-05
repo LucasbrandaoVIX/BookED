@@ -21,6 +21,8 @@ struct Leitor {
     Lista_livro* livros_desejados; // Lista de livros desejados pelo leitor
     Lista_livro* livros_recomendados; // Lista de livros recomendados para o leitor
     Lista_leitores* lista_afinidades_com_leitores;
+    Recomendacao recomendacoes[100]; // Array para rastrear quem recomendou cada livro
+    int num_recomendacoes;
 };
 
 struct Celula {
@@ -88,6 +90,7 @@ Leitor* inicializa_leitor(int indentificador, char nome[TAMANHO_MAXIMO], int n_a
     novo_leitor->livros_desejados = criar_lista_livro(); // Inicializar lista de livros desejados
     novo_leitor->livros_recomendados = criar_lista_livro(); // Inicializar lista de livros recomendados
     novo_leitor->lista_afinidades_com_leitores = criar_lista_leitores(); // Inicializar lista de afinidades
+    novo_leitor->num_recomendacoes = 0; // Inicializar contador de recomendações
 
     return novo_leitor; // Retornar o ponteiro para o novo leitor
 
@@ -267,54 +270,99 @@ void recomendar_livro(Leitor* leitor_origem, Livro* livro, Leitor* leitor_destin
         return;
     }
     
-    // Verificar se o livro já está na lista de recomendados usando função do livro.c
+    // Verificar se o livro já está na lista de recomendados
     if (!livro_ja_existe_na_lista(leitor_destino->livros_recomendados, livro)) {
         inserir_livro(leitor_destino->livros_recomendados, livro);
+        
+        // Adicionar informação sobre quem recomendou
+        if (leitor_destino->num_recomendacoes < 100) {
+            leitor_destino->recomendacoes[leitor_destino->num_recomendacoes].livro = livro;
+            leitor_destino->recomendacoes[leitor_destino->num_recomendacoes].id_recomendador = leitor_origem->indentificador;
+            leitor_destino->num_recomendacoes++;
+        }
     }
     
     printf("%s recomendou \"%s\" para %s.\n", 
            leitor_origem->nome, obter_titulo_livro(livro), leitor_destino->nome);
 }
 
-void aceitar_recomendacao(Leitor* leitor, Livro* livro) {
+void aceitar_recomendacao(Leitor* leitor, Livro* livro, Lista_leitores* lista_leitores) {
     if (leitor == NULL || livro == NULL) {
         printf("Erro: Parâmetros inválidos.\n");
         return;
     }
     
-    // Verificar se o livro está na lista de recomendados usando função do livro.c
+    // Verificar se o livro está na lista de recomendados
     if (!livro_ja_existe_na_lista(leitor->livros_recomendados, livro)) {
         printf("%s não possui recomendação do livro \"%s\".\n", leitor->nome, obter_titulo_livro(livro));
         return;
     }
     
-    // Se o livro não está na lista de desejados, adicionar usando função do livro.c
+    // Se o livro não está na lista de desejados, adicionar
     if (!livro_ja_existe_na_lista(leitor->livros_desejados, livro)) {
         inserir_livro(leitor->livros_desejados, livro);
     }
     
-    // Remover da lista de recomendados usando função do livro.c
+    // Remover da lista de recomendados e do array de recomendações
     remover_livro_da_lista(leitor->livros_recomendados, livro);
+    
+    // Remover do array de recomendações
+    int id_livro = obter_id_livro(livro);
+    for (int i = 0; i < leitor->num_recomendacoes; i++) {
+        if (obter_id_livro(leitor->recomendacoes[i].livro) == id_livro) {
+            // Mover todos os elementos seguintes uma posição para trás
+            for (int j = i; j < leitor->num_recomendacoes - 1; j++) {
+                leitor->recomendacoes[j] = leitor->recomendacoes[j + 1];
+            }
+            leitor->num_recomendacoes--;
+            break;
+        }
+    }
     
     printf("%s aceitou a recomendação de \"%s\".\n", leitor->nome, obter_titulo_livro(livro));
 }
 
-void remover_recomendacao(Leitor* leitor, Livro* livro) {
+void remover_recomendacao(Leitor* leitor, Livro* livro, Lista_leitores* lista_leitores) {
     if (leitor == NULL || livro == NULL) {
         printf("Erro: Parâmetros inválidos.\n");
         return;
     }
     
-    // Verificar se o livro está na lista de recomendados usando função do livro.c
+    // Verificar se o livro está na lista de recomendados
     if (!livro_ja_existe_na_lista(leitor->livros_recomendados, livro)) {
         printf("Erro: Livro não está na lista de recomendados.\n");
         return;
     }
     
-    // Remover da lista de recomendados usando função do livro.c
+    // Remover da lista de recomendados
     remover_livro_da_lista(leitor->livros_recomendados, livro);
     
+    // Remover do array de recomendações
+    int id_livro = obter_id_livro(livro);
+    for (int i = 0; i < leitor->num_recomendacoes; i++) {
+        if (obter_id_livro(leitor->recomendacoes[i].livro) == id_livro) {
+            // Mover todos os elementos seguintes uma posição para trás
+            for (int j = i; j < leitor->num_recomendacoes - 1; j++) {
+                leitor->recomendacoes[j] = leitor->recomendacoes[j + 1];
+            }
+            leitor->num_recomendacoes--;
+            break;
+        }
+    }
+    
     printf("Recomendação de \"%s\" foi removida da lista de %s.\n", obter_titulo_livro(livro), leitor->nome);
+}
+
+int obter_id_recomendador(Leitor* leitor, Livro* livro) {
+    if (leitor == NULL || livro == NULL) return -1;
+    
+    int id_livro = obter_id_livro(livro);
+    for (int i = 0; i < leitor->num_recomendacoes; i++) {
+        if (obter_id_livro(leitor->recomendacoes[i].livro) == id_livro) {
+            return leitor->recomendacoes[i].id_recomendador;
+        }
+    }
+    return -1; // Não encontrado
 }
 
 void descobrir_livros_em_comum_leitores(Leitor* leitor1, Leitor* leitor2) {

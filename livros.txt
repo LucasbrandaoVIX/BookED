@@ -1,13 +1,21 @@
 id;titulo;autor;genero;ano
-1;O Cortiço;Aluísio Azevedo;Terror;1890
-2;O Xangô de Baker Street;Jô Soares;Mistério;1995
-3;Senhora;José de Alencar;Romance;1875
-4;A Hora da Estrela;Clarice Lispector;Terror;1977
-5;O Caso da Estranha Fotografia;Marcos Rey;Mistério;1978
-6;Iracema;José de Alencar;Romance;1865
-7;Agosto;Rubem Fonseca;Mistério;1990
-8;A Moreninha;Joaquim Manuel de Macedo;Romance;1844
-9;Incidente em Antares;Erico Verissimo;Terror;1971
-10;A Grande Arte;Rubem Fonseca;Mistério;1983
-11;Os Sertões;Euclides da Cunha;História;1902
-12;Nós;Lauro Packer;Distopia;2016
+1;Dom Casmurro;Machado de Assis;Romance;1899
+2;O Alienista;Machado de Assis;Drama;1882
+3;Capitães da Areia;Jorge Amado;Drama;1937
+4;O Tempo e o Vento;Erico Verissimo;História;1949
+5;Vaga Música;Cecília Meireles;Biografia;1942
+6;O Coruja;Aluísio Azevedo;Terror;1885
+7;A Droga da Obediência;Pedro Bandeira;Ficção Científica;1984
+8;O Hobbit;J.R.R. Tolkien;Fantasia;1937
+9;Robinson Crusoé;Daniel Defoe;Aventura;1719
+10;O Nome da Rosa;Umberto Eco;Mistério;1980
+11;Triste Fim de Policarpo Quaresma;Lima Barreto;Romance;1915
+12;Auto da Barca do Inferno;Gil Vicente;Drama;1517
+13;Casa-Grande & Senzala;Gilberto Freyre;História;1933
+14;Minha Vida de Menina;Helena Morley;Biografia;1942
+15;O Guarani;José de Alencar;Terror;1857
+16;Admirável Mundo Novo;Aldous Huxley;Ficção Científica;1932
+17;O Senhor dos Anéis;J.R.R. Tolkien;Fantasia;1954
+18;As Aventuras de Tom Sawyer;Mark Twain;Aventura;1876
+19;E Não Sobrou Nenhum;Agatha Christie;Mistério;1939
+20;A Cartomante;Machado de Assis;Romance;1884

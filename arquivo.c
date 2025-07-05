@@ -154,6 +154,14 @@ void executar_comando_adicionar_livro_lido(Lista_leitores* lista_leitores, Lista
         return;
     }
     
+    // Verificar se o livro já foi lido
+    if (livro_ja_existe_na_lista(obter_livros_lidos(leitor), livro)) {
+        char mensagem[256];
+        sprintf(mensagem, "%s já leu \"%s\"", obter_nome_leitor(leitor), obter_titulo_livro(livro));
+        escrever_saida(mensagem);
+        return;
+    }
+    
     adicionar_livro_lido(leitor, livro);
     
     // Escrever no arquivo de saída
@@ -173,6 +181,14 @@ void executar_comando_adicionar_livro_desejado(Lista_leitores* lista_leitores, L
     
     if (livro == NULL) {
         printf("Erro: Livro com ID %d não encontrado.\n", id_livro);
+        return;
+    }
+    
+    // Verificar se o livro já está na lista de desejados
+    if (livro_ja_existe_na_lista(obter_livros_desejados(leitor), livro)) {
+        char mensagem[256];
+        sprintf(mensagem, "%s já deseja ler \"%s\"", obter_nome_leitor(leitor), obter_titulo_livro(livro));
+        escrever_saida(mensagem);
         return;
     }
     
@@ -223,6 +239,16 @@ void executar_comando_recomendar_livro(Lista_leitores* lista_leitores, Lista_liv
         return;
     }
     
+    // Verificar se o leitor destino já deseja ler o livro
+    if (livro_ja_existe_na_lista(obter_livros_desejados(leitor_destino), livro)) {
+        char mensagem[256];
+        sprintf(mensagem, "%s já deseja ler \"%s\", recomendação desnecessária", 
+                obter_nome_leitor(leitor_destino), 
+                obter_titulo_livro(livro));
+        escrever_saida(mensagem);
+        return;
+    }
+    
     recomendar_livro(leitor_origem, livro, leitor_destino);
     
     // Escrever no arquivo de saída
@@ -234,9 +260,10 @@ void executar_comando_recomendar_livro(Lista_leitores* lista_leitores, Lista_liv
     escrever_saida(mensagem);
 }
 
-void executar_comando_aceitar_recomendacao(Lista_leitores* lista_leitores, Lista_livro* lista_livros, int id_leitor, int id_livro) {
+void executar_comando_aceitar_recomendacao(Lista_leitores* lista_leitores, Lista_livro* lista_livros, int id_leitor, int id_livro, int id_recomendador) {
     Leitor* leitor = buscar_leitor_por_id(lista_leitores, id_leitor);
     Livro* livro = buscar_livro_por_id(lista_livros, id_livro);
+    Leitor* recomendador = buscar_leitor_por_id(lista_leitores, id_recomendador);
     
     if (leitor == NULL) {
         printf("Erro: Leitor com ID %d não encontrado.\n", id_leitor);
@@ -251,25 +278,38 @@ void executar_comando_aceitar_recomendacao(Lista_leitores* lista_leitores, Lista
     // Verificar se o livro está na lista de recomendados antes de tentar aceitar
     if (!livro_ja_existe_na_lista(obter_livros_recomendados(leitor), livro)) {
         char mensagem[256];
-        sprintf(mensagem, "%s não possui recomendação do livro ID %d", 
-                obter_nome_leitor(leitor), id_livro);
+        if (recomendador != NULL) {
+            sprintf(mensagem, "%s não possui recomendação do livro ID %d feita por %s", 
+                    obter_nome_leitor(leitor), id_livro, obter_nome_leitor(recomendador));
+        } else {
+            sprintf(mensagem, "%s não possui recomendação do livro ID %d", 
+                    obter_nome_leitor(leitor), id_livro);
+        }
         escrever_saida(mensagem);
         return;
     }
     
-    aceitar_recomendacao(leitor, livro);
+    aceitar_recomendacao(leitor, livro, lista_leitores);
     
-    // Escrever no arquivo de saída
+    // Escrever no arquivo de saída com informação do recomendador
     char mensagem[256];
-    sprintf(mensagem, "%s aceita recomendação de \"%s\"", 
-            obter_nome_leitor(leitor), 
-            obter_titulo_livro(livro));
+    if (recomendador != NULL) {
+        sprintf(mensagem, "%s aceita recomendação \"%s\" de %s", 
+                obter_nome_leitor(leitor), 
+                obter_titulo_livro(livro),
+                obter_nome_leitor(recomendador));
+    } else {
+        sprintf(mensagem, "%s aceita recomendação de \"%s\"", 
+                obter_nome_leitor(leitor), 
+                obter_titulo_livro(livro));
+    }
     escrever_saida(mensagem);
 }
 
-void executar_comando_remover_recomendacao(Lista_leitores* lista_leitores, Lista_livro* lista_livros, int id_leitor, int id_livro) {
+void executar_comando_remover_recomendacao(Lista_leitores* lista_leitores, Lista_livro* lista_livros, int id_leitor, int id_livro, int id_recomendador) {
     Leitor* leitor = buscar_leitor_por_id(lista_leitores, id_leitor);
     Livro* livro = buscar_livro_por_id(lista_livros, id_livro);
+    Leitor* recomendador = buscar_leitor_por_id(lista_leitores, id_recomendador);
     
     if (leitor == NULL) {
         printf("Erro: Leitor com ID %d não encontrado.\n", id_leitor);
@@ -284,19 +324,31 @@ void executar_comando_remover_recomendacao(Lista_leitores* lista_leitores, Lista
     // Verificar se o livro está na lista de recomendados antes de tentar rejeitar
     if (!livro_ja_existe_na_lista(obter_livros_recomendados(leitor), livro)) {
         char mensagem[256];
-        sprintf(mensagem, "%s não possui recomendação do livro ID %d", 
-                obter_nome_leitor(leitor), id_livro);
+        if (recomendador != NULL) {
+            sprintf(mensagem, "%s não possui recomendação do livro ID %d feita por %s", 
+                    obter_nome_leitor(leitor), id_livro, obter_nome_leitor(recomendador));
+        } else {
+            sprintf(mensagem, "%s não possui recomendação do livro ID %d", 
+                    obter_nome_leitor(leitor), id_livro);
+        }
         escrever_saida(mensagem);
         return;
     }
 
-    remover_recomendacao(leitor, livro);
+    remover_recomendacao(leitor, livro, lista_leitores);
     
-    // Escrever no arquivo de saída
+    // Escrever no arquivo de saída com informação do recomendador
     char mensagem[256];
-    sprintf(mensagem, "%s rejeita recomendação de \"%s\"", 
-            obter_nome_leitor(leitor), 
-            obter_titulo_livro(livro));
+    if (recomendador != NULL) {
+        sprintf(mensagem, "%s rejeita recomendação de \"%s\" de %s", 
+                obter_nome_leitor(leitor), 
+                obter_titulo_livro(livro),
+                obter_nome_leitor(recomendador));
+    } else {
+        sprintf(mensagem, "%s rejeita recomendação de \"%s\"", 
+                obter_nome_leitor(leitor), 
+                obter_titulo_livro(livro));
+    }
     escrever_saida(mensagem);
 }
 
@@ -520,8 +572,12 @@ void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livro
                 if (token == NULL) continue;
                 int id_livro = atoi(token);
                 
+                token = strtok(NULL, ";");
+                if (token == NULL) continue;
+                int id_recomendador = atoi(token);
+                
                 // Execute command
-                executar_comando_aceitar_recomendacao(lista_leitores, lista_livros, id_leitor, id_livro);
+                executar_comando_aceitar_recomendacao(lista_leitores, lista_livros, id_leitor, id_livro, id_recomendador);
                 break;
             }
             case 5: { // Remover Recomendação
@@ -533,8 +589,12 @@ void processar_comandos(Lista_leitores* lista_leitores, Lista_livro* lista_livro
                 if (token == NULL) continue;
                 int id_livro = atoi(token);
                 
+                token = strtok(NULL, ";");
+                if (token == NULL) continue;
+                int id_recomendador = atoi(token);
+                
                 // Execute command
-                executar_comando_remover_recomendacao(lista_leitores, lista_livros, id_leitor, id_livro);
+                executar_comando_remover_recomendacao(lista_leitores, lista_livros, id_leitor, id_livro, id_recomendador);
                 break;
             }
             case 6: { // Descobrir Livros em Comum

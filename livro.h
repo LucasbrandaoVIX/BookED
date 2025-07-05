@@ -25,6 +25,7 @@ void descobrir_livros_em_comum_para_saida(Lista_livro* lista_lidos1, Lista_livro
 // Funcionalidades de livros
 char* obter_titulo_livro(Livro* livro);
 Livro* inicializar_livro(int identificador, char titulo[], char autor[], char genero[], int ano);
+int obter_id_livro(Livro* livro);
 
 // Funcoes para formatar listas como string (comando 8)
 void formatar_lista_livros_como_string(Lista_livro* lista, char* resultado, int tamanho_max);
