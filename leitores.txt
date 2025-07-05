@@ -1,7 +1,16 @@
 Id;nome;n_afinidades;afinidades
-1;Marcus;2;Romance;Terror
-2;Lucius;2;Terror;Mistério
-3;Julia;1;Mistério
-4;Gaius;2;Romance;Terror
-5;Claudia;2;Mistério;História
-6;Livia;1;História
+1;Amanda;3;Romance;Drama;História
+2;Bruno;2;Romance;Mistério
+3;Carla;3;Drama;Terror;Biografia
+4;Diego;2;Terror;Ficção Científica
+5;Elena;3;Ficção Científica;Fantasia;Aventura
+6;Felipe;2;Fantasia;História
+7;Gabriela;3;História;Biografia;Romance
+8;Henrique;2;Biografia;Drama
+9;Isabela;3;Mistério;Terror;Aventura
+10;João;2;Aventura;Ficção Científica
+11;Karen;3;Romance;Fantasia;Drama
+12;Leonardo;2;Terror;História
+13;Mariana;3;Mistério;Biografia;Ficção Científica
+14;Nicolas;2;Fantasia;Aventura
+15;Olivia;3;Drama;História;Terror

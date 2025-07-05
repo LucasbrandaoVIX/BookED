@@ -14,10 +14,14 @@
 #define MAX_AFINIDADES 10
 
 typedef struct Leitor Leitor;
-
 typedef struct Celula Celula;
-
 typedef struct Lista_leitores Lista_leitores; // Sentinela para a lista de leitores
+
+// Estrutura para rastrear recomendações com quem recomendou
+typedef struct Recomendacao {
+    Livro* livro;
+    int id_recomendador;
+} Recomendacao;
 
 // Funcionalidades da lista de leitores
 Lista_leitores* criar_lista_leitores();
@@ -39,10 +43,10 @@ void adicionar_livro_desejado(Leitor* leitor, Livro* livro);
 void recomendar_livro(Leitor* leitor_origem, Livro* livro, Leitor* leitor_destino);
 
 // Funcionalidades do comando 4
-void aceitar_recomendacao(Leitor* leitor, Livro* livro);
+void aceitar_recomendacao(Leitor* leitor, Livro* livro, Lista_leitores* lista_leitores);
 
 // Funcionalidades do comando 5
-void remover_recomendacao(Leitor* leitor, Livro* livro);
+void remover_recomendacao(Leitor* leitor, Livro* livro, Lista_leitores* lista_leitores);
 
 // Funcionalidade adicional
 void descobrir_livros_em_comum_leitores(Leitor* leitor1, Leitor* leitor2);
@@ -58,5 +62,8 @@ Lista_livro* obter_livros_lidos(Leitor* leitor);
 Lista_livro* obter_livros_desejados(Leitor* leitor);
 Lista_livro* obter_livros_recomendados(Leitor* leitor);
 Lista_leitores* obter_afinidades_leitor(Leitor* leitor);
+
+// Funcoes auxiliares para recomendacoes
+int obter_id_recomendador(Leitor* leitor, Livro* livro);
 
 #endif

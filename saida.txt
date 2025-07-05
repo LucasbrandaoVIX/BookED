@@ -1,105 +1,128 @@
-Marcus leu "O Cortiço"
-Marcus leu "O Xangô de Baker Street"
-Marcus leu "Senhora"
-Lucius leu "A Hora da Estrela"
-Lucius leu "O Caso da Estranha Fotografia"
-Lucius leu "Iracema"
-Julia leu "Agosto"
-Julia leu "A Moreninha"
-Julia leu "Incidente em Antares"
-Gaius leu "A Grande Arte"
-Gaius leu "Os Sertões"
-Gaius leu "Nós"
-Claudia leu "O Cortiço"
-Claudia leu "O Xangô de Baker Street"
-Claudia leu "Senhora"
-Livia leu "A Hora da Estrela"
-Livia leu "O Caso da Estranha Fotografia"
-Existe afinidade entre Marcus e Gaius
-Existe afinidade entre Marcus e Lucius
-Existe afinidade entre Lucius e Julia
-Existe afinidade entre Julia e Claudia
-Existe afinidade entre Claudia e Livia
-Marcus deseja ler "Agosto"
-Marcus deseja ler "A Moreninha"
-Marcus deseja ler "Incidente em Antares"
-Lucius deseja ler "A Grande Arte"
-Lucius deseja ler "Os Sertões"
-Lucius deseja ler "Nós"
-Julia deseja ler "O Cortiço"
-Julia deseja ler "O Xangô de Baker Street"
-Gaius deseja ler "Agosto"
-Gaius deseja ler "A Moreninha"
-Claudia deseja ler "Incidente em Antares"
-Claudia deseja ler "A Grande Arte"
-Livia deseja ler "Os Sertões"
-Livia deseja ler "Nós"
-Livros em comum entre Marcus e Gaius: Nenhum livro em comum
-Livros em comum entre Marcus e Lucius: Nenhum livro em comum
-Livros em comum entre Lucius e Julia: Nenhum livro em comum
-Livros em comum entre Marcus e Claudia: O Cortiço, O Xangô de Baker Street, Senhora
-Marcus leu "O Cortiço"
-Lucius leu "A Hora da Estrela"
-Julia leu "Agosto"
-Marcus deseja ler "Agosto"
-Lucius deseja ler "A Grande Arte"
-Julia deseja ler "O Cortiço"
-Existe afinidade entre Marcus e Gaius
-Existe afinidade entre Lucius e Julia
-Marcus não pode recomendar livros para si mesmo
-Lucius recomenda "Senhora" para Gaius
-Lucius não precisa da recomendação de "Iracema" pois já leu este livro
-Marcus não possui recomendação do livro ID 4
-Gaius aceita recomendação de "Senhora"
-Lucius não possui recomendação do livro ID 6
-Lucius não precisa da recomendação de "A Hora da Estrela" pois já leu este livro
-Lucius não possui recomendação do livro ID 4
-Livros em comum entre Marcus e Gaius: Nenhum livro em comum
-Livros em comum entre Lucius e Julia: Nenhum livro em comum
-Livros em comum entre Claudia e Livia: Nenhum livro em comum
-Existe afinidade entre Marcus e Lucius
-Existe afinidade entre Julia e Claudia
-Existe afinidade entre Lucius e Julia
-Existe afinidade entre Claudia e Livia
-Existe afinidade entre Marcus e Livia
-Existe afinidade entre Marcus e Julia
-Existe afinidade entre Gaius e Claudia
-Existe afinidade entre Lucius e Livia
+Amanda leu "Dom Casmurro"
+Amanda leu "O Alienista"
+Bruno leu "O Nome da Rosa"
+Carla leu "Capitães da Areia"
+Diego leu "O Coruja"
+Elena leu "A Droga da Obediência"
+Felipe leu "O Hobbit"
+Gabriela leu "O Tempo e o Vento"
+Henrique leu "Vaga Música"
+Isabela leu "E Não Sobrou Nenhum"
+João leu "Robinson Crusoé"
+Karen leu "Triste Fim de Policarpo Quaresma"
+Leonardo leu "O Guarani"
+Mariana leu "Admirável Mundo Novo"
+Nicolas leu "O Senhor dos Anéis"
+Olivia leu "Auto da Barca do Inferno"
+Amanda deseja ler "A Cartomante"
+Bruno deseja ler "Dom Casmurro"
+Carla deseja ler "Minha Vida de Menina"
+Diego deseja ler "Admirável Mundo Novo"
+Elena deseja ler "O Senhor dos Anéis"
+Felipe deseja ler "Casa-Grande & Senzala"
+Gabriela deseja ler "Vaga Música"
+Henrique deseja ler "Capitães da Areia"
+Isabela deseja ler "As Aventuras de Tom Sawyer"
+João deseja ler "A Droga da Obediência"
+Karen deseja ler "O Hobbit"
+Leonardo deseja ler "O Tempo e o Vento"
+Mariana deseja ler "O Nome da Rosa"
+Nicolas deseja ler "Robinson Crusoé"
+Olivia deseja ler "O Coruja"
+Bruno já deseja ler "Dom Casmurro", recomendação desnecessária
+Bruno recomenda "O Nome da Rosa" para Carla
+Henrique já deseja ler "Capitães da Areia", recomendação desnecessária
+Diego recomenda "O Coruja" para Elena
+Elena recomenda "A Droga da Obediência" para Felipe
+Felipe recomenda "O Hobbit" para Gabriela
+Gabriela recomenda "O Tempo e o Vento" para Amanda
+Henrique recomenda "Vaga Música" para Isabela
+Isabela recomenda "E Não Sobrou Nenhum" para João
+João recomenda "Robinson Crusoé" para Karen
+Karen recomenda "Triste Fim de Policarpo Quaresma" para Leonardo
+Leonardo recomenda "O Guarani" para Mariana
+Mariana recomenda "Admirável Mundo Novo" para Nicolas
+Nicolas recomenda "O Senhor dos Anéis" para Olivia
+Olivia recomenda "Auto da Barca do Inferno" para Amanda
+Bruno não possui recomendação do livro ID 1 feita por Amanda
+Gabriela não possui recomendação do livro ID 4 feita por Amanda
+Livros em comum entre Amanda e Bruno: Nenhum livro em comum
+Livros em comum entre Carla e Henrique: Nenhum livro em comum
+Livros em comum entre Elena e João: Nenhum livro em comum
+Livros em comum entre Gabriela e Karen: Nenhum livro em comum
+Livros em comum entre Isabela e Mariana: Nenhum livro em comum
+Livros em comum entre Leonardo e Olivia: Nenhum livro em comum
+Existe afinidade entre Amanda e Gabriela
+Existe afinidade entre Bruno e Isabela
+Existe afinidade entre Carla e Olivia
+Existe afinidade entre Elena e Nicolas
+Existe afinidade entre Felipe e Leonardo
+Existe afinidade entre Henrique e Mariana
+Existe afinidade entre João e Diego
+Existe afinidade entre Bruno e Elena
+Existe afinidade entre João e Olivia
+Existe afinidade entre Felipe e Diego
+Existe afinidade entre Henrique e Nicolas
+Existe afinidade entre Diego e Karen
 Imprime toda a BookED
 
-Leitor: Marcus
-Lidos: O Cortiço, O Xangô de Baker Street, Senhora, O Cortiço
-Desejados: Agosto, A Moreninha, Incidente em Antares, Agosto
-Recomendacoes: 
-Afinidades: Lucius, Gaius
+Leitor: Amanda
+Lidos: Dom Casmurro, O Alienista
+Desejados: A Cartomante
+Recomendacoes: O Tempo e o Vento, Auto da Barca do Inferno
+Afinidades: Bruno, Carla, Felipe, Gabriela, Henrique
 
-Leitor: Lucius
-Lidos: A Hora da Estrela, O Caso da Estranha Fotografia, Iracema, A Hora da Estrela
-Desejados: A Grande Arte, Os Sertões, Nós, A Grande Arte
+Leitor: Bruno
+Lidos: O Nome da Rosa
+Desejados: Dom Casmurro
 Recomendacoes: 
-Afinidades: Marcus, Julia, Gaius, Claudia
+Afinidades: Amanda, Gabriela, Isabela
 
-Leitor: Julia
-Lidos: Agosto, A Moreninha, Incidente em Antares, Agosto
-Desejados: O Cortiço, O Xangô de Baker Street, O Cortiço
-Recomendacoes: 
-Afinidades: Lucius, Claudia
+Leitor: Carla
+Lidos: Capitães da Areia
+Desejados: Minha Vida de Menina
+Recomendacoes: O Nome da Rosa
+Afinidades: Amanda, Diego, Gabriela, Henrique, Isabela
 
-Leitor: Gaius
-Lidos: A Grande Arte, Os Sertões, Nós
-Desejados: Agosto, A Moreninha, Senhora
+Leitor: Diego
+Lidos: O Coruja
+Desejados: Admirável Mundo Novo
 Recomendacoes: 
-Afinidades: Marcus, Lucius
+Afinidades: Carla, Elena, Isabela, João
 
-Leitor: Claudia
-Lidos: O Cortiço, O Xangô de Baker Street, Senhora
-Desejados: Incidente em Antares, A Grande Arte
-Recomendacoes: 
-Afinidades: Lucius, Julia, Livia
+Leitor: Elena
+Lidos: A Droga da Obediência
+Desejados: O Senhor dos Anéis
+Recomendacoes: O Coruja
+Afinidades: Diego, Felipe, Isabela, João
 
-Leitor: Livia
-Lidos: A Hora da Estrela, O Caso da Estranha Fotografia
-Desejados: Os Sertões, Nós
+Leitor: Felipe
+Lidos: O Hobbit
+Desejados: Casa-Grande & Senzala
+Recomendacoes: A Droga da Obediência
+Afinidades: Amanda, Elena, Gabriela
+
+Leitor: Gabriela
+Lidos: O Tempo e o Vento
+Desejados: Vaga Música
+Recomendacoes: O Hobbit
+Afinidades: Amanda, Bruno, Carla, Felipe, Henrique
+
+Leitor: Henrique
+Lidos: Vaga Música
+Desejados: Capitães da Areia
 Recomendacoes: 
-Afinidades: Claudia
+Afinidades: Amanda, Carla, Gabriela
+
+Leitor: Isabela
+Lidos: E Não Sobrou Nenhum
+Desejados: As Aventuras de Tom Sawyer
+Recomendacoes: Vaga Música
+Afinidades: Bruno, Carla, Diego, Elena, João
+
+Leitor: João
+Lidos: Robinson Crusoé
+Desejados: A Droga da Obediência
+Recomendacoes: E Não Sobrou Nenhum
+Afinidades: Diego, Elena, Isabela
 
